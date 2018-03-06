@@ -8042,7 +8042,7 @@ body {
 
 .circle p {
     width: 200px;
-    height: 105px;
+    height: 200px;
     background: #000;
     text-align: center;
     border-radius: 100px;
@@ -8081,8 +8081,8 @@ div.effect1 div:hover {
 
 .effect-3 p {
     position: absolute;
-    opacity: 0.8;
-    top: -18px;
+    opacity: 0.6;
+    top: -10px;
     left: 0;
     margin-left: -200px;
 }

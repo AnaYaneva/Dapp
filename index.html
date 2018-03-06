@@ -120,56 +120,72 @@
 
         <div class="row">
             <div class="col-lg-6 text-center">
-        <div class="ht-tm-codeblock">
-            <div class="ht-tm-element card text-center">
-                <div class="image-container">
-                    <div style="margin-top: 50px" class="circle effect6">
-                        <img id="img" width="200px" height="200px" src="/images/1.jpg" alt="Choose Planet Appearance">
-                    </div>
-                </div>
-
-                <div class="card-body">
-                    <h4 class="card-title">Card title</h4>
-                    <div>
-                        <input id="valR" type="range" min="1" max="6" value="1" step="1" class="slider" oninput="showVal(this.value)"
-                                onchange="showVal(this.value)"/>
-                    </div>
-                    <span id="range" style="display: none;">0</span>
-                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-
-                    <div class="ht-tm-codeblock ht-tm-btn-replaceable ht-tm-element ht-tm-element-inner">
-                        <form>
-                            <div class="form-group">
-                                <label for="exampleInputEmail1">Enter Name for Your Planet</label>
-                                <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter Name for Your Planet">
-                                <small id="emailHelp" class="form-text text-muted">We'll never share your email</small>
+                <div class="ht-tm-codeblock">
+                    <div class="ht-tm-element card text-center">
+                        <div class="image-container">
+                            <div style="margin-top: 50px" class="circle effect6">
+                                <img id="img" width="200px" height="200px" src="/images/1.jpg"
+                                     alt="Choose Planet Appearance">
                             </div>
-                        </form>
+                        </div>
+
+                        <div class="card-body">
+                            <h4 class="card-title">Card title</h4>
+                            <div>
+                                <input id="valR" type="range" min="1" max="6" value="1" step="1" class="slider"
+                                       oninput="showVal(this.value)"
+                                       onchange="showVal(this.value)"/>
+                            </div>
+                            <span id="range" style="display: none;">0</span>
+                            <p class="card-text">Some quick example text to build on the card title and make up the bulk
+                                of the card's content.</p>
+
+                            <div class="ht-tm-codeblock ht-tm-btn-replaceable ht-tm-element ht-tm-element-inner">
+                                <form>
+                                    <div class="form-group">
+                                        <label for="exampleInputEmail1">Enter Name for Your Planet</label>
+                                        <input type="text" class="form-control" id="exampleInputEmail1"
+                                               aria-describedby="emailHelp" placeholder="Enter Name for Your Planet">
+                                        <small id="emailHelp" class="form-text text-muted">We'll never share your
+                                            email
+                                        </small>
+                                    </div>
+                                </form>
+                            </div>
+                            <button type="submit" class="btn btn-primary">Submit</button>
+                            <a href="#!" class="btn btn-primary">Go somewhere</a>
+                        </div>
                     </div>
-                    <button type="submit" class="btn btn-primary">Submit</button>
-                    <a href="#!" class="btn btn-primary">Go somewhere</a>
+                </div>
+            </div>
+
+            <div class="col-lg-6 text-center">
+                <div class="ht-tm-codeblock">
+                    <div class="ht-tm-element card text-center">
+                        <div class="image-container">
+                            <div class="circle effect-3">
+                                <img src="images/1.png" alt=""/>
+                                <p>Your Planet Native Race</p>
+                            </div>
+                        </div>
+
+                        <div class="card-body">
+                            <h4 class="card-title">Card title</h4>
+
+
+                            <p class="card-text">Some quick example text to build on the card title and make up the bulk
+                                of the card's content.</p>
+
+                            <div class="ht-tm-codeblock ht-tm-btn-replaceable ht-tm-element ht-tm-element-inner">
+
+                            </div>
+                            <button type="submit" class="btn btn-primary">Submit</button>
+                            <a href="#!" class="btn btn-primary">Go somewhere</a>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
-            </div>
-        </div>
-
-                <div class="row">
-                    <div class="col-lg-6">
-
-                    </div>
-                    <div class="col-lg-6">
-                        
-
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-6">
-
-            </div>
-        </div>
-
-
     </section>
 
     <section id="viewGalaxy" class="viewGalaxy">
@@ -217,11 +233,11 @@
         crossorigin="anonymous"></script>
 <script>
     var val = document.getElementById("valR").value;
-    document.getElementById("range").innerHTML=val;
+    document.getElementById("range").innerHTML = val;
     document.getElementById("img").src = val + ".jpg";
-    function showVal(newVal){
-        document.getElementById("range").innerHTML=newVal;
-        document.getElementById("img").src = "./images/"+newVal+ ".jpg";
+    function showVal(newVal) {
+        document.getElementById("range").innerHTML = newVal;
+        document.getElementById("img").src = "./images/" + newVal + ".jpg";
     }
 </script>
 <script>
