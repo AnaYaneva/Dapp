@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Neon Glow - Bootstrap 4 Theme</title>
+    <script src="scripts/jquery-3.2.1.min.js"></script>
+    <script src="scripts/app.js"></script>
+    <script src="scripts/handlebars-v4.0.10.js"></script>
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+
+    <link rel='stylesheet' href='//cdn.jsdelivr.net/font-hack/2.020/css/hack.min.css'>
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+    <link rel="stylesheet" href="css/bootstrap4-neon-glow.css">
+
+</head>
+<body>
+<header id="menu" class="menu">
+    <a href="#" id="linkHome" class="navbar" data-target="viewHome">Home</a>
+    <a href="#" id="linkMyAccount" class="navbar" data-target="viewMyAccount">My Planet</a>
+    <a href="#" id="linkNewAccount" class="navbar" data-target="viewNewAccout">Invade New Planet</a>
+    <a href="#" id="linkGalaxy" class="navbar" data-target="viewGalaxy">Search The Galaxy</a>
+    <a href="#" id="linkTransfer" class="navbar" data-target="viewTransfer">Transfer</a>
+    <div></div>
+</header>
+
+<main>
+    <div id="loadingBox" class="loadingBox notification">Loading ...</div>
+
+    <div id="infoBox" class="infoBox notification">Info</div>
+
+    <div id="errorBox" class="errorBox notification">Error</div>
+
+
+    <section id="viewHome" class="viewHome">
+        <div class="container">
+            <div class="jumbotron text-center" style="margin: 50px">
+                <h1>Bootstrap 4 Theme</h1>
+                <p>
+                    This is minimal Bootstrap 4 Starter template.
+                </p>
+            </div>
+
+            <div class="py-5">
+
+
+                <a href="#!" class="btn btn-primary">Default Button</a>
+
+                <a href="#!" class="btn btn-outline-primary">Outline Button</a>
+            </div>
+        </div>
+    </section>
+
+    <section id="viewMyAccount" class="viewMyAccount">
+        <div class="container">
+
+
+            <div class="py-5">
+
+                <div class="row">
+                    <div class="col-lg-4">
+
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="slidecontainer">
+                            <p>Custom range slider:</p>
+                            <input type="range" min="1" max="6" value="2" class="slider" id="myRange">
+                        </div>
+                    </div>
+
+                </div>
+
+
+                <a href="#!" class="btn btn-primary">Default Button</a>
+
+                <a href="#!" class="btn btn-outline-primary">Outline Button</a>
+            </div>
+        </div>
+
+    </section>
+
+    <section id="viewNewAccout" class="viewNewAccout">
+        <h2>New Planet</h2>
+    </section>
+
+    <section id="viewGalaxy" class="viewGalaxy">
+        <h2>Galaxy</h2>
+    </section>
+
+    <section id="viewAttack" class="viewAttack">
+        <h2>Attack</h2>
+    </section>
+
+    <section id="viewBattle" class="viewBattle">
+        <h2>viewBattle</h2>
+    </section>
+
+    <section id="viewTransfer" class="viewTransfer">
+        <h2>Transfer</h2>
+    </section>
+
+
+</main>
+<footer>Dapp-2018</footer>
+<!-- Optional JavaScript -->
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha256-3edrmyuQ0w65f8gfBsqowzjJe2iM6n0nKciPUp8y+7E=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+<script>
+    startApp();
+</script>
+</body>
+</html>
