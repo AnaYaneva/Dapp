@@ -20,7 +20,9 @@
 
     <div class="ht-tm-codeblock">
         <nav class="navbar navbar-expand-lg navbar-dark bg-primary ht-tm-element">
-            <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
+            <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse"
+                    data-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false"
+                    aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <a class="navbar-brand" href="#!">Dapp</a>
@@ -28,19 +30,22 @@
             <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
                 <ul class="navbar-nav mr-auto mt-2 mt-md-0">
                     <li class="nav-item">
-                        <a class="nav-link" href="#" id="linkHome"  data-target="viewHome">Home</a>
+                        <a class="nav-link" href="#" id="linkHome" data-target="viewHome">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#/myAccount"id="linkMyAccount"  data-target="viewMyAccount">My Planet</a>
+                        <a class="nav-link" href="#/myAccount" id="linkMyAccount" data-target="viewMyAccount">My
+                            Planet</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link " href="#/newAccount" id="linkNewAccount"  data-target="viewNewAccout">Invade New Planet</a>
+                        <a class="nav-link " href="#/newAccount" id="linkNewAccount" data-target="viewNewAccount">Invade
+                            New Planet</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link " href="#/galaxy"  id="linkGalaxy" data-target="viewGalaxy">Search The Galaxy</a>
+                        <a class="nav-link " href="#/galaxy" id="linkGalaxy" data-target="viewGalaxy">Search The
+                            Galaxy</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link " href="#/transfer" id="linkTransfer"  data-target="viewTransfer">Transfer</a>
+                        <a class="nav-link " href="#/transfer" id="linkTransfer" data-target="viewTransfer">Transfer</a>
                     </li>
                 </ul>
             </div>
@@ -110,8 +115,61 @@
 
     </section>
 
-    <section id="viewNewAccout" class="viewNewAccout">
+    <section id="viewNewAccount" class="viewNewAccount">
         <h2>New Planet</h2>
+
+        <div class="row">
+            <div class="col-lg-6 text-center">
+        <div class="ht-tm-codeblock">
+            <div class="ht-tm-element card text-center">
+                <div class="image-container">
+                    <div style="margin-top: 50px" class="circle effect6">
+                        <img id="img" width="200px" height="200px" src="/images/1.jpg" alt="Choose Planet Appearance">
+                    </div>
+                </div>
+
+                <div class="card-body">
+                    <h4 class="card-title">Card title</h4>
+                    <div>
+                        <input id="valR" type="range" min="1" max="6" value="1" step="1" class="slider" oninput="showVal(this.value)"
+                                onchange="showVal(this.value)"/>
+                    </div>
+                    <span id="range" style="display: none;">0</span>
+                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+
+                    <div class="ht-tm-codeblock ht-tm-btn-replaceable ht-tm-element ht-tm-element-inner">
+                        <form>
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">Enter Name for Your Planet</label>
+                                <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter Name for Your Planet">
+                                <small id="emailHelp" class="form-text text-muted">We'll never share your email</small>
+                            </div>
+                        </form>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                    <a href="#!" class="btn btn-primary">Go somewhere</a>
+                </div>
+            </div>
+        </div>
+            </div>
+        </div>
+
+                <div class="row">
+                    <div class="col-lg-6">
+
+                    </div>
+                    <div class="col-lg-6">
+                        
+
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6">
+
+            </div>
+        </div>
+
+
     </section>
 
     <section id="viewGalaxy" class="viewGalaxy">
@@ -123,7 +181,8 @@
                 <img class="card-img-top" src="/images/bootstrap-themes/card.png" alt="Card image cap">
                 <div class="card-body">
                     <h4 class="card-title">Card title</h4>
-                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
+                        card's content.</p>
                     <a href="#!" class="btn btn-lg btn-primary">Go somewhere</a>
                 </div>
             </div>
@@ -156,6 +215,15 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
         integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
         crossorigin="anonymous"></script>
+<script>
+    var val = document.getElementById("valR").value;
+    document.getElementById("range").innerHTML=val;
+    document.getElementById("img").src = val + ".jpg";
+    function showVal(newVal){
+        document.getElementById("range").innerHTML=newVal;
+        document.getElementById("img").src = "./images/"+newVal+ ".jpg";
+    }
+</script>
 <script>
     startApp();
 </script>

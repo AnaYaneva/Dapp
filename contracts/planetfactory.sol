@@ -29,11 +29,13 @@ contract PlanetFactory is Ownable {
   Planet[] public planets;
 
   mapping (uint => address) public planetToOwner;
+  mapping (address => uint) public ownerToPlanet;
   mapping (address => uint) public ownerPlanetCount;
 
   function _createPlanet(string _name, uint _civilizationParams, uint8 _image) internal {
     uint id = planets.push(Planet(_name, _civilizationParams, 1, uint32(now + cooldownTime), 0, 0, _image)) - 1;
     planetToOwner[id] = msg.sender;
+    ownerToPlanet[msg.sender] = id;
     ownerPlanetCount[msg.sender]++;
     NewPlanet(id, _name, _civilizationParams);
   }
@@ -47,11 +49,23 @@ contract PlanetFactory is Ownable {
     require(msg.value == newPlanetPrice);
     require(ownerPlanetCount[msg.sender] == 0);
     uint randCivilizationParams = _generateRandomCivilizationParams(_name);
-    randcivilizationParams = randCivilizationParams - randCivilizationParams % 100;
+    randCivilizationParams = randCivilizationParams - randCivilizationParams % 100;
     _createPlanet(_name, randCivilizationParams, _image);
   }
 
-  function viewPlanet() public view returns(Planet){
-    return planets[planetToOwner[msg.sender]];
+  function viewPlanet() public view returns(string,
+    uint,
+    uint32,
+    uint16,
+    uint16,
+    uint8){
+      uint planetId=ownerToPlanet[msg.sender];
+      Planet storage myPlanet = planets[planetId];
+    return (myPlanet.name,
+            myPlanet.civilizationParams,
+            myPlanet.level,
+            myPlanet.winCount,
+            myPlanet.lossCount,
+            myPlanet.image);
     }
 }
