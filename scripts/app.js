@@ -1,20 +1,37 @@
+const ContractInfo = require('ContractInfo');
+
+
 function startApp() {
-    $('header').find('a').show();
-    const adsDiv = $('#ads');
-    const templates={};
-
-    loadTemplates();
-
-    async function loadTemplates() {
-        const [addCatalogTemplate,addBoxTemplate]=
-            await Promise.all([
-                $.get('./templates/adsCatalog.html'),
-                $.get('./templates/ad-box-partial.html')
-        ]);
-        templates['catalog']=Handlebars.compile(addCatalogTemplate);
-        Handlebars.registerPartial('adBox',addBoxTemplate);
+    if(typeof web3 !=='undefined'){
+        web3 = new Web3(web3.currentProvider);
+    }else{
+        web3 = new Web3(new Web3.providers.HttpProvider("http://localhost:8545"));
     }
 
+    web3.eth.defaultAccount = web3.eth.accounts[0];
+
+    let contract = web3.eth.contract(ContractInfo.getContractABI()).at(ContractInfo.getContractAddress());
+
+
+    $('header').find('a').show();
+    $('section').hide();
+    $('#viewHome').show();
+   //const adsDiv = $('#ads');
+   //const templates={};
+
+   //loadTemplates();
+
+   //async function loadTemplates() {
+   //    const [addCatalogTemplate,addBoxTemplate]=
+   //        await Promise.all([
+   //            $.get('./templates/adsCatalog.html'),
+   //            $.get('./templates/ad-box-partial.html')
+   //    ]);
+   //    templates['catalog']=Handlebars.compile(addCatalogTemplate);
+   //    Handlebars.registerPartial('adBox',addBoxTemplate);
+   //}
+
+    //navbar
     function showView(view) {
         $('section').hide();
         switch (view) {
@@ -65,7 +82,7 @@ function startApp() {
     // Notifications
     $(document).on({
         ajaxStart: () => $('#loadingBox').show(),
-        ajaxStop: () => $('#loadingBox').fadeOut()
+        ajaxStop: () => $('#loadingBox').fadeOut(300)
     });
 
     $('#infoBox').click((event) => $(event.target).hide());
@@ -86,7 +103,7 @@ function startApp() {
         showError(reason.responseJSON.description);
     }
 
-    let requester = (() => {
+    /*let requester = (() => {
         const baseUrl = 'https://baas.kinvey.com/';
         const appKey = 'kid_Hy-wNpePZ';
         const appSecret = '82945baf3467420a9f9888b3360a9270';
@@ -131,17 +148,17 @@ function startApp() {
         return {
             get, post, update, remove
         }
-    })();
+    })();*/
 
-    if (localStorage.getItem('authtoken') !== null &&
+    /*if (localStorage.getItem('authtoken') !== null &&
         localStorage.getItem('username') !== null) {
         userLoggedIn();
     } else {
         userLoggedOut();
     }
-    showView('home');
+    showView('home');*/
 
-    function userLoggedIn() {
+   /* function userLoggedIn() {
         $('#loggedInUser').text(`Welcome, ${localStorage.getItem('username')}!`);
         $('#loggedInUser').show();
         $('#linkLogin').hide();
@@ -166,7 +183,7 @@ function startApp() {
         localStorage.setItem('id', data._id);
         localStorage.setItem('authtoken', data._kmd.authtoken);
         userLoggedIn();
-    }
+    }*/
 
     async function login() {
         let form = $('#formLogin');
