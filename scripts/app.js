@@ -472,11 +472,12 @@ function startApp() {
         web3 = new Web3(new Web3.providers.HttpProvider("http://localhost:8545"));
     }
 
-    web3.eth.defaultAccount = web3.eth.accounts[0];
+    //web3.eth.defaultAccount = web3.eth.accounts[0];
 
     //let contract = web3.eth.contract(ContractInfo.getContractABI()).at(ContractInfo.getContractAddress());
 
     let contract = web3.eth.contract(getContractABI()).at(getContractAddress());
+    console.log(contract);
 
     $('header').find('a').show();
     $('section').hide();
@@ -540,7 +541,7 @@ function startApp() {
 
     //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
     $('#invadeNewPlanet').click(newPlanet);
-    //$('#buttonRegisterUser').click(register);
+    $('#viewNewPlanet').click(viewNewPlanet);
     //$('#buttonCreateAd').click(createAd);
     //$('#buttonEditAd').click(editAd);
 
@@ -654,17 +655,16 @@ function startApp() {
 
 
     function newPlanet() {
-        contract.createRandomPlanet($('#nameYourPlanet').val(),
-           $('#valR').val());
-
-        console.log("ok");
+        $('#loader').show();
         console.log($('#nameYourPlanet').val());
         console.log( $('#valR').val());
 
         /*let planetEvent=contract.NewPlanet();
-
+        console.log("ok");
         planetEvent.watch(function (error, result) {
             if(!error){
+                console.log(result.args.name);
+                console.log(result.args.civilizationParams);
                 $('#loader').hide();
                 $('#newName').html(result.args.name);
                 var civilizationParams=result.args.civilizationParams;
@@ -684,6 +684,64 @@ function startApp() {
                 console.log(error);
             }
         });*/
+
+        contract.createRandomPlanet($('#nameYourPlanet').val(),
+           $('#valR').val(), function (error, result) {
+                if(error){
+                    console.log(error);
+                    $('#loader').hide();
+                }else{
+                    console.log(result);
+                    //let address =web3.eth.defaultAccount;
+                   // console.log(address);
+
+
+                    /*contract.ownerToPlanet(address, function (error, result) {
+                         if(error){
+                             console.log(error);
+                         }else {
+                             console.log(result);
+                             contract.planets(result[0], function (error, result) {
+                                 if(error){
+                                     console.log(error);
+                                 }else {
+                                     console.log(result[0]);
+                                     console.log(result[1]);
+                                     console.log(result[2]);
+                                     console.log(result[3]);
+                                     console.log(result[4]);
+                                 }});
+
+                         }});*/
+
+
+                    //console.log(planet.name);
+                   /* var civilizationParams=contract.planets(id, function (error, result) {
+                        if(error){
+                            console.log(error);
+                        }else {
+                            console.log(result);
+                        }}).civilizationParams;
+                    console.log(civilizationParams);
+                    let imgNum=civilizationParams.substring(0, 1);
+                    document.getElementById("imgNativeRace").src = "./images/" + imgNum + ".png";
+                    let attack=civilizationParams.substring(1, 3);
+                    $('#newAttack').html(attack+" points");
+                    let defence=civilizationParams.substring(4, 3);
+                    $('#newDefencce').html(defence+" points");
+                    let intelligence=civilizationParams.substring(7, 3);
+                    $('#newIntelligence').html(intelligence+" points");
+                    let health=civilizationParams.substring(10, 3);
+                    $('#newHealth').html(health+" points");
+                    $('#nameRace').html(name+"arians");*/
+                    $('#loader').hide();
+
+                }
+            });
+
+
+
+
         /*let form = $('#formLogin');
         let username = form.find('input[name="username"]').val();
         let password = form.find('input[name="passwd"]').val();
@@ -698,19 +756,22 @@ function startApp() {
         }*/
     }
 
-    async function register() {
-        let form = $('#formRegister');
-        let username = form.find('input[name="username"]').val();
-        let password = form.find('input[name="passwd"]').val();
+    function viewNewPlanet() {
+        contract.viewPlanet(function (error, result) {
+            if(error){
+                console.log(error);
+                $('#loader').hide();
+            }else{
+                console.log(result[0]);
+                console.log(result[1]);
+                console.log(result[2]);
+                console.log(result[3]);
+                console.log(result[4]);
+                console.log(result[5]);
+                $('#nameRace').html(result[1]+"arians");
+                $('#newNativeRace').show();
+            }});
 
-        try {
-            let data = await requester.post('user', '', {username, password}, 'basic');
-            showInfo('Registered');
-            saveSession(data);
-            showView('ads');
-        } catch (err) {
-            handleError(err);
-        }
     }
 
     async function logout() {

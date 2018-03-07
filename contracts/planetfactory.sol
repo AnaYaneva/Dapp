@@ -7,7 +7,7 @@ contract PlanetFactory is Ownable {
 
   using SafeMath for uint256;
 
-  event NewPlanet(uint planetId, string name, uint civilizationParams);
+  event NewPlanet(uint planetId, string name, uint civilizationParams, uint8 image);
 
   uint civilizationParamsDigits = 16;
   uint civilizationParamsModulus = 10 ** civilizationParamsDigits;
@@ -24,6 +24,7 @@ contract PlanetFactory is Ownable {
     uint16 winCount;
     uint16 lossCount;
     uint8 image;
+    address owner;
   }
 
   Planet[] public planets;
@@ -33,11 +34,11 @@ contract PlanetFactory is Ownable {
   mapping (address => uint) public ownerPlanetCount;
 
   function _createPlanet(string _name, uint _civilizationParams, uint8 _image) internal {
-    uint id = planets.push(Planet(_name, _civilizationParams, 1, uint32(now + cooldownTime), 0, 0, _image)) - 1;
+    uint id = planets.push(Planet(_name, _civilizationParams, 1, uint32(now + cooldownTime), 0, 0, _image, msg.sender)) - 1;
     planetToOwner[id] = msg.sender;
     ownerToPlanet[msg.sender] = id;
     ownerPlanetCount[msg.sender]++;
-    NewPlanet(id, _name, _civilizationParams);
+    NewPlanet(id, _name, _civilizationParams, _image);
   }
 
   function _generateRandomCivilizationParams(string _str) private view returns (uint) {
@@ -45,8 +46,8 @@ contract PlanetFactory is Ownable {
     return rand % civilizationParamsModulus;
   }
 
-  function createRandomPlanet(string _name, uint8 _image ) public payable{
-    require(msg.value == newPlanetPrice);
+  function createRandomPlanet(string _name, uint8 _image ) public {
+    //require(msg.value == newPlanetPrice);
     require(ownerPlanetCount[msg.sender] == 0);
     uint randCivilizationParams = _generateRandomCivilizationParams(_name);
     randCivilizationParams = randCivilizationParams - randCivilizationParams % 100;
@@ -59,13 +60,18 @@ contract PlanetFactory is Ownable {
     uint16,
     uint16,
     uint8){
-      uint planetId=ownerToPlanet[msg.sender];
-      Planet storage myPlanet = planets[planetId];
+      //uint planetId=ownerToPlanet[msg.sender];
+      Planet storage myPlanet = planets[ownerToPlanet[msg.sender]];
+      if(myPlanet.owner == msg.sender){
     return (myPlanet.name,
             myPlanet.civilizationParams,
             myPlanet.level,
             myPlanet.winCount,
             myPlanet.lossCount,
             myPlanet.image);
+            }
+            return ("",0,0,0,0,0);
     }
+
+
 }

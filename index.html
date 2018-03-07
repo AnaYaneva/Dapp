@@ -5,7 +5,7 @@
 
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>Neon Glow - Bootstrap 4 Theme</title>
-    <!--<script src="scripts/jquery-3.2.1.min.js"></script>-->
+    <script src="scripts/jquery-3.2.1.min.js"></script>
     <script src="scripts/handlebars-v4.0.10.js"></script>
     <script src="node_modules/web3/dist/web3.min.js"></script>
     <script src="scripts/app.js"></script>
@@ -138,8 +138,8 @@
                                        oninput="showVal(this.value)"
                                        onchange="showVal(this.value)"/>
                             </div>
-                            <span id="range" style="display: none;">0</span>
-                            <p class="card-text">Some quick example text to build on the card title and make up the bulk
+                            <span id="range" style="display: none;">1</span>
+                            <p id="newDescr" class="card-text">Some quick example text to build on the card title and make up the bulk
                                 of the card's content.</p>
 
                             <div class="ht-tm-codeblock ht-tm-btn-replaceable ht-tm-element ht-tm-element-inner">
@@ -155,6 +155,7 @@
                                 </form>
                             </div>
                             <a href="#!" id="invadeNewPlanet" class="btn btn-primary">Invade New Planet</a>
+                            <a href="#!" id="viewNewPlanet" class="btn btn-primary">Invade New Planet</a>
                         </div>
                     </div>
                 </div>
@@ -176,6 +177,7 @@
                         <div class="card-body">
                             <h4 class="card-title">This is the parameters of your planet's native race:</h4>
 
+                            <h3 id="nameRace"></h3>
                             <h2 class="card-title">Attack Power:</h2>
                             <p class="card-text" id="newAttack"></p>
                             <h2 class="card-title">Defence Power:</h2>
@@ -227,8 +229,8 @@
 <footer>Dapp-2018</footer>
 <!-- Optional JavaScript -->
 <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-        integrity="sha256-3edrmyuQ0w65f8gfBsqowzjJe2iM6n0nKciPUp8y+7E=" crossorigin="anonymous"></script>
+<!--<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha256-3edrmyuQ0w65f8gfBsqowzjJe2iM6n0nKciPUp8y+7E=" crossorigin="anonymous"></script>-->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
         integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
         crossorigin="anonymous"></script>
