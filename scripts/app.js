@@ -1,462 +1,472 @@
 //const ContractInfo = require('/config/ContractInfo');
 function startApp() {
     function getContractOwner() {
-        let ownerAddress = "0xce267f7b55b20f4c5477b6544e8949b8b043aa2b";
+        let ownerAddress = "0xa3c92aa93e70556f8ffa6e00373d7eb1479646e9";
         return ownerAddress;
     }
     function getContractABI() {
-        let abi = [
-            {
-                "constant": true,
-                "inputs": [
-                    {
-                        "name": "",
-                        "type": "uint256"
-                    }
-                ],
-                "name": "planetToOwner",
-                "outputs": [
-                    {
-                        "name": "",
-                        "type": "address"
-                    }
-                ],
-                "payable": false,
-                "stateMutability": "view",
-                "type": "function"
-            },
-            {
-                "constant": false,
-                "inputs": [
-                    {
-                        "name": "_to",
-                        "type": "address"
-                    },
-                    {
-                        "name": "_tokenId",
-                        "type": "uint256"
-                    }
-                ],
-                "name": "approve",
-                "outputs": [],
-                "payable": false,
-                "stateMutability": "nonpayable",
-                "type": "function"
-            },
-            {
-                "constant": false,
-                "inputs": [
-                    {
-                        "name": "_planetId",
-                        "type": "uint256"
-                    }
-                ],
-                "name": "levelUp",
-                "outputs": [],
-                "payable": true,
-                "stateMutability": "payable",
-                "type": "function"
-            },
-            {
-                "constant": true,
-                "inputs": [
-                    {
-                        "name": "",
-                        "type": "address"
-                    }
-                ],
-                "name": "ownerToPlanet",
-                "outputs": [
-                    {
-                        "name": "",
-                        "type": "uint256"
-                    }
-                ],
-                "payable": false,
-                "stateMutability": "view",
-                "type": "function"
-            },
-            {
-                "constant": true,
-                "inputs": [
-                    {
-                        "name": "",
-                        "type": "uint256"
-                    }
-                ],
-                "name": "planets",
-                "outputs": [
-                    {
-                        "name": "name",
-                        "type": "string"
-                    },
-                    {
-                        "name": "civilizationParams",
-                        "type": "uint256"
-                    },
-                    {
-                        "name": "level",
-                        "type": "uint32"
-                    },
-                    {
-                        "name": "readyTime",
-                        "type": "uint32"
-                    },
-                    {
-                        "name": "winCount",
-                        "type": "uint16"
-                    },
-                    {
-                        "name": "lossCount",
-                        "type": "uint16"
-                    },
-                    {
-                        "name": "image",
-                        "type": "uint8"
-                    }
-                ],
-                "payable": false,
-                "stateMutability": "view",
-                "type": "function"
-            },
-            {
-                "constant": false,
-                "inputs": [
-                    {
-                        "name": "_planetId",
-                        "type": "uint256"
-                    },
-                    {
-                        "name": "_targetId",
-                        "type": "uint256"
-                    }
-                ],
-                "name": "battle",
-                "outputs": [],
-                "payable": false,
-                "stateMutability": "nonpayable",
-                "type": "function"
-            },
-            {
-                "constant": false,
-                "inputs": [],
-                "name": "withdraw",
-                "outputs": [],
-                "payable": false,
-                "stateMutability": "nonpayable",
-                "type": "function"
-            },
-            {
-                "constant": true,
-                "inputs": [],
-                "name": "viewPlanet",
-                "outputs": [
-                    {
-                        "name": "",
-                        "type": "string"
-                    },
-                    {
-                        "name": "",
-                        "type": "uint256"
-                    },
-                    {
-                        "name": "",
-                        "type": "uint32"
-                    },
-                    {
-                        "name": "",
-                        "type": "uint16"
-                    },
-                    {
-                        "name": "",
-                        "type": "uint16"
-                    },
-                    {
-                        "name": "",
-                        "type": "uint8"
-                    }
-                ],
-                "payable": false,
-                "stateMutability": "view",
-                "type": "function"
-            },
-            {
-                "constant": false,
-                "inputs": [
-                    {
-                        "name": "_planetId",
-                        "type": "uint256"
-                    },
-                    {
-                        "name": "_newAppearance",
-                        "type": "uint8"
-                    }
-                ],
-                "name": "changeAppearance",
-                "outputs": [],
-                "payable": false,
-                "stateMutability": "nonpayable",
-                "type": "function"
-            },
-            {
-                "constant": true,
-                "inputs": [
-                    {
-                        "name": "_tokenId",
-                        "type": "uint256"
-                    }
-                ],
-                "name": "ownerOf",
-                "outputs": [
-                    {
-                        "name": "_owner",
-                        "type": "address"
-                    }
-                ],
-                "payable": false,
-                "stateMutability": "view",
-                "type": "function"
-            },
-            {
-                "constant": true,
-                "inputs": [
-                    {
-                        "name": "_owner",
-                        "type": "address"
-                    }
-                ],
-                "name": "balanceOf",
-                "outputs": [
-                    {
-                        "name": "_balance",
-                        "type": "uint256"
-                    }
-                ],
-                "payable": false,
-                "stateMutability": "view",
-                "type": "function"
-            },
-            {
-                "constant": true,
-                "inputs": [],
-                "name": "owner",
-                "outputs": [
-                    {
-                        "name": "",
-                        "type": "address"
-                    }
-                ],
-                "payable": false,
-                "stateMutability": "view",
-                "type": "function"
-            },
-            {
-                "constant": false,
-                "inputs": [
-                    {
-                        "name": "_to",
-                        "type": "address"
-                    },
-                    {
-                        "name": "_tokenId",
-                        "type": "uint256"
-                    }
-                ],
-                "name": "transfer",
-                "outputs": [],
-                "payable": false,
-                "stateMutability": "nonpayable",
-                "type": "function"
-            },
-            {
-                "constant": false,
-                "inputs": [
-                    {
-                        "name": "_tokenId",
-                        "type": "uint256"
-                    }
-                ],
-                "name": "takeOwnership",
-                "outputs": [],
-                "payable": false,
-                "stateMutability": "nonpayable",
-                "type": "function"
-            },
-            {
-                "constant": false,
-                "inputs": [
-                    {
-                        "name": "_planetId",
-                        "type": "uint256"
-                    },
-                    {
-                        "name": "_newName",
-                        "type": "string"
-                    }
-                ],
-                "name": "changeName",
-                "outputs": [],
-                "payable": false,
-                "stateMutability": "nonpayable",
-                "type": "function"
-            },
-            {
-                "constant": false,
-                "inputs": [
-                    {
-                        "name": "_fee",
-                        "type": "uint256"
-                    }
-                ],
-                "name": "setLevelUpFee",
-                "outputs": [],
-                "payable": false,
-                "stateMutability": "nonpayable",
-                "type": "function"
-            },
-            {
-                "constant": true,
-                "inputs": [
-                    {
-                        "name": "",
-                        "type": "address"
-                    }
-                ],
-                "name": "ownerPlanetCount",
-                "outputs": [
-                    {
-                        "name": "",
-                        "type": "uint256"
-                    }
-                ],
-                "payable": false,
-                "stateMutability": "view",
-                "type": "function"
-            },
-            {
-                "constant": false,
-                "inputs": [
-                    {
-                        "name": "newOwner",
-                        "type": "address"
-                    }
-                ],
-                "name": "transferOwnership",
-                "outputs": [],
-                "payable": false,
-                "stateMutability": "nonpayable",
-                "type": "function"
-            },
-            {
-                "constant": false,
-                "inputs": [
-                    {
-                        "name": "_name",
-                        "type": "string"
-                    },
-                    {
-                        "name": "_image",
-                        "type": "uint8"
-                    }
-                ],
-                "name": "createRandomPlanet",
-                "outputs": [],
-                "payable": true,
-                "stateMutability": "payable",
-                "type": "function"
-            },
-            {
-                "anonymous": false,
-                "inputs": [
-                    {
-                        "indexed": true,
-                        "name": "_from",
-                        "type": "address"
-                    },
-                    {
-                        "indexed": true,
-                        "name": "_to",
-                        "type": "address"
-                    },
-                    {
-                        "indexed": false,
-                        "name": "_tokenId",
-                        "type": "uint256"
-                    }
-                ],
-                "name": "Transfer",
-                "type": "event"
-            },
-            {
-                "anonymous": false,
-                "inputs": [
-                    {
-                        "indexed": true,
-                        "name": "_owner",
-                        "type": "address"
-                    },
-                    {
-                        "indexed": true,
-                        "name": "_approved",
-                        "type": "address"
-                    },
-                    {
-                        "indexed": false,
-                        "name": "_tokenId",
-                        "type": "uint256"
-                    }
-                ],
-                "name": "Approval",
-                "type": "event"
-            },
-            {
-                "anonymous": false,
-                "inputs": [
-                    {
-                        "indexed": false,
-                        "name": "planetId",
-                        "type": "uint256"
-                    },
-                    {
-                        "indexed": false,
-                        "name": "name",
-                        "type": "string"
-                    },
-                    {
-                        "indexed": false,
-                        "name": "civilizationParams",
-                        "type": "uint256"
-                    }
-                ],
-                "name": "NewPlanet",
-                "type": "event"
-            },
-            {
-                "anonymous": false,
-                "inputs": [
-                    {
-                        "indexed": true,
-                        "name": "previousOwner",
-                        "type": "address"
-                    },
-                    {
-                        "indexed": true,
-                        "name": "newOwner",
-                        "type": "address"
-                    }
-                ],
-                "name": "OwnershipTransferred",
-                "type": "event"
-            }
-        ];
+        let abi =
+            [
+                {
+                    "constant": true,
+                    "inputs": [],
+                    "name": "owner",
+                    "outputs": [
+                        {
+                            "name": "",
+                            "type": "address"
+                        }
+                    ],
+                    "payable": false,
+                    "stateMutability": "view",
+                    "type": "function"
+                },
+                {
+                    "constant": true,
+                    "inputs": [
+                        {
+                            "name": "_owner",
+                            "type": "address"
+                        }
+                    ],
+                    "name": "balanceOf",
+                    "outputs": [
+                        {
+                            "name": "_balance",
+                            "type": "uint256"
+                        }
+                    ],
+                    "payable": false,
+                    "stateMutability": "view",
+                    "type": "function"
+                },
+                {
+                    "constant": true,
+                    "inputs": [],
+                    "name": "viewPlanet",
+                    "outputs": [
+                        {
+                            "name": "",
+                            "type": "string"
+                        },
+                        {
+                            "name": "",
+                            "type": "uint256"
+                        },
+                        {
+                            "name": "",
+                            "type": "uint32"
+                        },
+                        {
+                            "name": "",
+                            "type": "uint16"
+                        },
+                        {
+                            "name": "",
+                            "type": "uint16"
+                        },
+                        {
+                            "name": "",
+                            "type": "uint8"
+                        }
+                    ],
+                    "payable": false,
+                    "stateMutability": "view",
+                    "type": "function"
+                },
+                {
+                    "constant": true,
+                    "inputs": [
+                        {
+                            "name": "_tokenId",
+                            "type": "uint256"
+                        }
+                    ],
+                    "name": "ownerOf",
+                    "outputs": [
+                        {
+                            "name": "_owner",
+                            "type": "address"
+                        }
+                    ],
+                    "payable": false,
+                    "stateMutability": "view",
+                    "type": "function"
+                },
+                {
+                    "constant": true,
+                    "inputs": [
+                        {
+                            "name": "",
+                            "type": "address"
+                        }
+                    ],
+                    "name": "ownerPlanetCount",
+                    "outputs": [
+                        {
+                            "name": "",
+                            "type": "uint256"
+                        }
+                    ],
+                    "payable": false,
+                    "stateMutability": "view",
+                    "type": "function"
+                },
+                {
+                    "constant": true,
+                    "inputs": [
+                        {
+                            "name": "",
+                            "type": "uint256"
+                        }
+                    ],
+                    "name": "planets",
+                    "outputs": [
+                        {
+                            "name": "name",
+                            "type": "string"
+                        },
+                        {
+                            "name": "civilizationParams",
+                            "type": "uint256"
+                        },
+                        {
+                            "name": "level",
+                            "type": "uint32"
+                        },
+                        {
+                            "name": "readyTime",
+                            "type": "uint32"
+                        },
+                        {
+                            "name": "winCount",
+                            "type": "uint16"
+                        },
+                        {
+                            "name": "lossCount",
+                            "type": "uint16"
+                        },
+                        {
+                            "name": "image",
+                            "type": "uint8"
+                        },
+                        {
+                            "name": "owner",
+                            "type": "address"
+                        }
+                    ],
+                    "payable": false,
+                    "stateMutability": "view",
+                    "type": "function"
+                },
+                {
+                    "constant": true,
+                    "inputs": [
+                        {
+                            "name": "",
+                            "type": "uint256"
+                        }
+                    ],
+                    "name": "planetToOwner",
+                    "outputs": [
+                        {
+                            "name": "",
+                            "type": "address"
+                        }
+                    ],
+                    "payable": false,
+                    "stateMutability": "view",
+                    "type": "function"
+                },
+                {
+                    "constant": true,
+                    "inputs": [
+                        {
+                            "name": "",
+                            "type": "address"
+                        }
+                    ],
+                    "name": "ownerToPlanet",
+                    "outputs": [
+                        {
+                            "name": "",
+                            "type": "uint256"
+                        }
+                    ],
+                    "payable": false,
+                    "stateMutability": "view",
+                    "type": "function"
+                },
+                {
+                    "anonymous": false,
+                    "inputs": [
+                        {
+                            "indexed": true,
+                            "name": "_owner",
+                            "type": "address"
+                        },
+                        {
+                            "indexed": true,
+                            "name": "_approved",
+                            "type": "address"
+                        },
+                        {
+                            "indexed": false,
+                            "name": "_tokenId",
+                            "type": "uint256"
+                        }
+                    ],
+                    "name": "Approval",
+                    "type": "event"
+                },
+                {
+                    "constant": false,
+                    "inputs": [
+                        {
+                            "name": "_planetId",
+                            "type": "uint256"
+                        },
+                        {
+                            "name": "_targetId",
+                            "type": "uint256"
+                        }
+                    ],
+                    "name": "battle",
+                    "outputs": [],
+                    "payable": false,
+                    "stateMutability": "nonpayable",
+                    "type": "function"
+                },
+                {
+                    "constant": false,
+                    "inputs": [],
+                    "name": "withdraw",
+                    "outputs": [],
+                    "payable": false,
+                    "stateMutability": "nonpayable",
+                    "type": "function"
+                },
+                {
+                    "constant": false,
+                    "inputs": [
+                        {
+                            "name": "newOwner",
+                            "type": "address"
+                        }
+                    ],
+                    "name": "transferOwnership",
+                    "outputs": [],
+                    "payable": false,
+                    "stateMutability": "nonpayable",
+                    "type": "function"
+                },
+                {
+                    "constant": false,
+                    "inputs": [
+                        {
+                            "name": "_fee",
+                            "type": "uint256"
+                        }
+                    ],
+                    "name": "setLevelUpFee",
+                    "outputs": [],
+                    "payable": false,
+                    "stateMutability": "nonpayable",
+                    "type": "function"
+                },
+                {
+                    "constant": false,
+                    "inputs": [
+                        {
+                            "name": "_to",
+                            "type": "address"
+                        },
+                        {
+                            "name": "_tokenId",
+                            "type": "uint256"
+                        }
+                    ],
+                    "name": "transfer",
+                    "outputs": [],
+                    "payable": false,
+                    "stateMutability": "nonpayable",
+                    "type": "function"
+                },
+                {
+                    "anonymous": false,
+                    "inputs": [
+                        {
+                            "indexed": false,
+                            "name": "planetId",
+                            "type": "uint256"
+                        },
+                        {
+                            "indexed": false,
+                            "name": "name",
+                            "type": "string"
+                        },
+                        {
+                            "indexed": false,
+                            "name": "civilizationParams",
+                            "type": "uint256"
+                        },
+                        {
+                            "indexed": false,
+                            "name": "image",
+                            "type": "uint8"
+                        }
+                    ],
+                    "name": "NewPlanet",
+                    "type": "event"
+                },
+                {
+                    "anonymous": false,
+                    "inputs": [
+                        {
+                            "indexed": true,
+                            "name": "previousOwner",
+                            "type": "address"
+                        },
+                        {
+                            "indexed": true,
+                            "name": "newOwner",
+                            "type": "address"
+                        }
+                    ],
+                    "name": "OwnershipTransferred",
+                    "type": "event"
+                },
+                {
+                    "anonymous": false,
+                    "inputs": [
+                        {
+                            "indexed": true,
+                            "name": "_from",
+                            "type": "address"
+                        },
+                        {
+                            "indexed": true,
+                            "name": "_to",
+                            "type": "address"
+                        },
+                        {
+                            "indexed": false,
+                            "name": "_tokenId",
+                            "type": "uint256"
+                        }
+                    ],
+                    "name": "Transfer",
+                    "type": "event"
+                },
+                {
+                    "constant": false,
+                    "inputs": [
+                        {
+                            "name": "_to",
+                            "type": "address"
+                        },
+                        {
+                            "name": "_tokenId",
+                            "type": "uint256"
+                        }
+                    ],
+                    "name": "approve",
+                    "outputs": [],
+                    "payable": false,
+                    "stateMutability": "nonpayable",
+                    "type": "function"
+                },
+                {
+                    "constant": false,
+                    "inputs": [
+                        {
+                            "name": "_planetId",
+                            "type": "uint256"
+                        }
+                    ],
+                    "name": "levelUp",
+                    "outputs": [],
+                    "payable": true,
+                    "stateMutability": "payable",
+                    "type": "function"
+                },
+                {
+                    "constant": false,
+                    "inputs": [
+                        {
+                            "name": "_tokenId",
+                            "type": "uint256"
+                        }
+                    ],
+                    "name": "takeOwnership",
+                    "outputs": [],
+                    "payable": false,
+                    "stateMutability": "nonpayable",
+                    "type": "function"
+                },
+                {
+                    "constant": false,
+                    "inputs": [
+                        {
+                            "name": "_planetId",
+                            "type": "uint256"
+                        },
+                        {
+                            "name": "_newAppearance",
+                            "type": "uint8"
+                        }
+                    ],
+                    "name": "changeAppearance",
+                    "outputs": [],
+                    "payable": false,
+                    "stateMutability": "nonpayable",
+                    "type": "function"
+                },
+                {
+                    "constant": false,
+                    "inputs": [
+                        {
+                            "name": "_planetId",
+                            "type": "uint256"
+                        },
+                        {
+                            "name": "_newName",
+                            "type": "string"
+                        }
+                    ],
+                    "name": "changeName",
+                    "outputs": [],
+                    "payable": false,
+                    "stateMutability": "nonpayable",
+                    "type": "function"
+                },
+                {
+                    "constant": false,
+                    "inputs": [
+                        {
+                            "name": "_name",
+                            "type": "string"
+                        },
+                        {
+                            "name": "_image",
+                            "type": "uint8"
+                        }
+                    ],
+                    "name": "createRandomPlanet",
+                    "outputs": [],
+                    "payable": false,
+                    "stateMutability": "nonpayable",
+                    "type": "function"
+                }
+            ];
         return abi;
     }
     function getContractAddress() {
-        let address = "0xb89a0685cdbc46eb958a37e834415a87f5c63823";
-        return address;
+        let contractAddress = "0xfeccd78808e2d9e749e1f24a82c2a0eeb4603860";
+        return contractAddress;
     }
 
-    if(typeof web3 !=='undefined'){
+    if(typeof web3 !== 'undefined'){
         web3 = new Web3(web3.currentProvider);
     }else{
         web3 = new Web3(new Web3.providers.HttpProvider("http://localhost:8545"));
@@ -529,7 +539,7 @@ function startApp() {
     $('#linkTransfer').click(() => showView('transfer'));
 
     //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-    //$('#buttonLoginUser').click(login);
+    $('#invadeNewPlanet').click(newPlanet);
     //$('#buttonRegisterUser').click(register);
     //$('#buttonCreateAd').click(createAd);
     //$('#buttonEditAd').click(editAd);
@@ -643,8 +653,38 @@ function startApp() {
    //<img id="id1" src="~$imageUrl`" onload="javascript:showImage();">
 
 
-    async function login() {
-        let form = $('#formLogin');
+    function newPlanet() {
+        contract.createRandomPlanet($('#nameYourPlanet').val(),
+           $('#valR').val());
+
+        console.log("ok");
+        console.log($('#nameYourPlanet').val());
+        console.log( $('#valR').val());
+
+        /*let planetEvent=contract.NewPlanet();
+
+        planetEvent.watch(function (error, result) {
+            if(!error){
+                $('#loader').hide();
+                $('#newName').html(result.args.name);
+                var civilizationParams=result.args.civilizationParams;
+                let imgNum=civilizationParams.substring(0, 1);
+                document.getElementById("imgNativeRace").src = "./images/" + imgNum + ".png";
+                let attack=civilizationParams.substring(1, 3);
+                $('#newAttack').html(attack+" points");
+                let defence=civilizationParams.substring(4, 3);
+                $('#newDefencce').html(defence+" points");
+                let intelligence=civilizationParams.substring(7, 3);
+                $('#newIntelligence').html(intelligence+" points");
+                let health=civilizationParams.substring(10, 3);
+                $('#newHealth').html(health+" points");
+                $('#newNativeRace').show();
+            }else{
+                $('#loader').hide();
+                console.log(error);
+            }
+        });*/
+        /*let form = $('#formLogin');
         let username = form.find('input[name="username"]').val();
         let password = form.find('input[name="passwd"]').val();
 
@@ -655,7 +695,7 @@ function startApp() {
             showView('ads');
         } catch (err) {
             handleError(err);
-        }
+        }*/
     }
 
     async function register() {

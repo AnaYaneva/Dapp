@@ -5,9 +5,11 @@
 
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>Neon Glow - Bootstrap 4 Theme</title>
-    <script src="scripts/jquery-3.2.1.min.js"></script>
-    <script src="scripts/app.js"></script>
+    <!--<script src="scripts/jquery-3.2.1.min.js"></script>-->
     <script src="scripts/handlebars-v4.0.10.js"></script>
+    <script src="node_modules/web3/dist/web3.min.js"></script>
+    <script src="scripts/app.js"></script>
+
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
 
     <link rel='stylesheet' href='//cdn.jsdelivr.net/font-hack/2.020/css/hack.min.css'>
@@ -119,7 +121,7 @@
         <h2>New Planet</h2>
 
         <div class="row">
-            <div class="col-lg-6 text-center">
+            <div class="col-lg-6 text-center" id="newPlanet">
                 <div class="ht-tm-codeblock">
                     <div class="ht-tm-element card text-center">
                         <div class="image-container">
@@ -130,7 +132,7 @@
                         </div>
 
                         <div class="card-body">
-                            <h4 class="card-title">Card title</h4>
+                            <h4 class="card-title" id="newName">Card title</h4>
                             <div>
                                 <input id="valR" type="range" min="1" max="6" value="1" step="1" class="slider"
                                        oninput="showVal(this.value)"
@@ -143,8 +145,8 @@
                             <div class="ht-tm-codeblock ht-tm-btn-replaceable ht-tm-element ht-tm-element-inner">
                                 <form>
                                     <div class="form-group">
-                                        <label for="exampleInputEmail1">Enter Name for Your Planet</label>
-                                        <input type="text" class="form-control" id="exampleInputEmail1"
+                                        <label for="nameYourPlanet">Enter Name for Your Planet</label>
+                                        <input type="text" class="form-control" id="nameYourPlanet"
                                                aria-describedby="emailHelp" placeholder="Enter Name for Your Planet">
                                         <small id="emailHelp" class="form-text text-muted">We'll never share your
                                             email
@@ -152,35 +154,37 @@
                                     </div>
                                 </form>
                             </div>
-                            <button type="submit" class="btn btn-primary">Submit</button>
-                            <a href="#!" class="btn btn-primary">Go somewhere</a>
+                            <a href="#!" id="invadeNewPlanet" class="btn btn-primary">Invade New Planet</a>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <div class="col-lg-6 text-center">
+
+            <img id="loader" src="images/Double Ring-2s-200px.gif">
+
+            <div class="col-lg-6 text-center" id="newNativeRace" style="display:none">
                 <div class="ht-tm-codeblock">
                     <div class="ht-tm-element card text-center">
                         <div class="image-container">
                             <div class="circle effect-3">
-                                <img src="images/1.png" alt=""/>
+                                <img id="imgNativeRace" src="images/1.png" alt=""/>
                                 <p>Your Planet Native Race</p>
                             </div>
                         </div>
 
                         <div class="card-body">
-                            <h4 class="card-title">Card title</h4>
+                            <h4 class="card-title">This is the parameters of your planet's native race:</h4>
 
+                            <h2 class="card-title">Attack Power:</h2>
+                            <p class="card-text" id="newAttack"></p>
+                            <h2 class="card-title">Defence Power:</h2>
+                            <p class="card-text" id="newDefencce"></p>
+                            <h2 class="card-title">Intelligence:</h2>
+                            <p class="card-text" id="newIntelligence"></p>
+                            <h2 class="card-title">Overall Health:</h2>
+                            <p class="card-text" id="newHealth"></p>
 
-                            <p class="card-text">Some quick example text to build on the card title and make up the bulk
-                                of the card's content.</p>
-
-                            <div class="ht-tm-codeblock ht-tm-btn-replaceable ht-tm-element ht-tm-element-inner">
-
-                            </div>
-                            <button type="submit" class="btn btn-primary">Submit</button>
-                            <a href="#!" class="btn btn-primary">Go somewhere</a>
                         </div>
                     </div>
                 </div>
@@ -194,7 +198,7 @@
 
         <div class="ht-tm-codeblock">
             <div class="ht-tm-element card">
-                <img class="card-img-top" src="/images/bootstrap-themes/card.png" alt="Card image cap">
+                <img class="card-img-top"  alt="Card image cap">
                 <div class="card-body">
                     <h4 class="card-title">Card title</h4>
                     <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
@@ -231,6 +235,15 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
         integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
         crossorigin="anonymous"></script>
+<script >
+    /*if(typeof web3 !== 'undefined'){
+        web3 = new Web3(web3.currentProvider);
+    }else{
+        web3 = new Web3(new Web3.providers.HttpProvider("http://localhost:8545"));
+    }
+
+    web3.eth.defaultAccount = web3.eth.accounts[0];*/
+</script>
 <script>
     var val = document.getElementById("valR").value;
     document.getElementById("range").innerHTML = val;
