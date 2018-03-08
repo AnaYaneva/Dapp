@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
 
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Neon Glow - Bootstrap 4 Theme</title>
+    <title>Crypto Galaxy</title>
     <script src="scripts/jquery-3.2.1.min.js"></script>
     <script src="scripts/handlebars-v4.0.10.js"></script>
     <script src="node_modules/web3/dist/web3.min.js"></script>
@@ -71,50 +71,118 @@
 
 
     <section id="viewHome" class="viewHome">
-        <div class="container">
+        <div class="container text-center">
             <div class="jumbotron text-center" style="margin: 50px">
-                <h1>Bootstrap 4 Theme</h1>
-                <p>
-                    This is minimal Bootstrap 4 Starter template.
-                </p>
+                <h1 style="margin-bottom: 75px">
+                    Welcome, Master!
+                </h1>
+                <h5>Now we will now find out if You already has Your own Planet, and if not You can invade one</h5>
             </div>
 
-            <div class="py-5">
-
-
-                <a href="#!" class="btn btn-primary">Default Button</a>
-
-                <a href="#!" class="btn btn-outline-primary">Outline Button</a>
+            <div class="ht-tm-cat" style="margin-bottom: 50px" >
+                <div class="ht-tm-codeblock">
+                    <h5 class="ht-tm-cat-title">HAL 9000</h5>
+                    <p>The evil robot from A Space Odyssey is summoned with <code>hal-9000</code>. He will scan You now.</p>
+                    <span class="ht-tm-element hal-9000 d-block mx-auto mb-4 mt-3"></span>
+                </div>
             </div>
+
+            <div class=" row ht-tm-codeblock text-center">
+
+                <a href="#!" id="homeProceed" class="ht-tm-element btn btn-outline-primary btn-block">Lets find out who You are!</a>
+
+        </div>
         </div>
     </section>
 
     <section id="viewMyAccount" class="viewMyAccount">
-        <div class="container">
+        <h2>Your Planet</h2>
 
+        <img id="yourPlanetLoader" class="loader" src="images/Double Ring-2s-200px.gif">
 
-            <div class="py-5">
+        <div id="yourPlanetView" class="row" style="display: none">
+            <div class="col-lg-6 text-center" id="yourPlanet">
+                <div class="ht-tm-codeblock">
+                    <div class="ht-tm-element card text-center">
+                        <div class="image-container">
+                            <div style="margin-top: 50px" class="circle effect6">
+                                <img id="yourPlanetImage" width="200px" height="200px"
+                                     alt="Your Planet">
+                            </div>
+                        </div>
 
-                <div class="row">
-                    <div class="col-lg-4">
+                        <div class="card-body">
+                            <h2 class="card-title" id="yourPlanetName">Card title</h2>
 
-                    </div>
-                    <div class="col-lg-4">
-                        <div class="slidecontainer">
-                            <p>Custom range slider:</p>
-                            <input type="range" min="1" max="6" value="2" class="slider" id="myRange">
+                            <div >
+                                <h5 class="card-title">Level:</h5>
+                                <p class="card-text" id="yourPlanetLevel"></p>
+                                <!--<a href="#!" id="btnLevelUp" class="btn btn-primary">Level Up!</a>
+                                <small id="levelUpFee" class="form-text text-muted">You can increase the level of your planet, but it will cost you 0.001 ether!
+                                </small>-->
+                            </div>
+                            <div >
+                                <h5 class="card-title">Win count:</h5>
+                                <p class="card-text" id="yourPlanetWin"></p>
+                            </div>
+                            <div >
+                                <h5 class="card-title">Loss count:</h5>
+                                <p class="card-text" id="yourPlanetLoss"></p>
+                            </div>
+                            <div id="imageRange" style="display: none">
+                            <div>
+                                <input id="yourPlanetValR" type="range" min="1" max="6" value="1" step="1" class="slider"
+                                       oninput="showVal(this.value)"
+                                       onchange="showVal(this.value)"/>
+                            </div>
+                            <span id="yourPlanetRange" style="display: none;">1</span>
+                                <a href="#!" id="btnChangeAppearance" class="btn btn-primary">Change Appearance</a>
+                            </div>
+                            <div style="margin-top: 20px; margin-bottom: 20px;"></div>
+                            <a href="#!" id="btnSearchGalaxy" class="btn btn-primary">Search The Galaxy!</a>
+
+                            <div class="ht-tm-codeblock ht-tm-btn-replaceable ht-tm-element ht-tm-element-inner" id="levelTwoChangeName" style="display:none">
+                                <form>
+                                    <div class="form-group">
+                                        <label for="changeYourPlanetName">Enter Name for Your Planet</label>
+                                        <input type="text" class="form-control" id="changeYourPlanetName"
+                                               aria-describedby="emailHelp" placeholder="Enter New Name for Your Planet">
+                                    </div>
+                                    <a href="#!" id="btnChangeName" class="btn btn-primary">Change Name</a>
+                                </form>
+                            </div>
                         </div>
                     </div>
-
                 </div>
+            </div>
 
+            <div class="col-lg-6 text-center" id="yourPlanetNativeRace" >
+                <div class="ht-tm-codeblock">
+                    <div class="ht-tm-element card text-center">
+                        <div class="image-container">
+                            <div class="circle effect-3" style="margin-top: 50px">
+                                <img id="yourPlanetNativeRaceImage" src="images/1.png" alt=""/>
+                                <p>Your Planet Native Race</p>
+                            </div>
+                        </div>
 
-                <a href="#!" class="btn btn-primary">Default Button</a>
+                        <div class="card-body">
+                            <!--<h2 class="card-title">This is the parameters of your planet's native race:</h2>-->
 
-                <a href="#!" class="btn btn-outline-primary">Outline Button</a>
+                            <h2 id="yourPlanetRace"></h2>
+                            <h5 class="card-title">Attack Power:</h5>
+                            <p class="card-text" id="yourPlanetRaceAttack"></p>
+                            <h5 class="card-title">Defence Power:</h5>
+                            <p class="card-text" id="yourPlanetRaceDefencce"></p>
+                            <h5 class="card-title">Intelligence:</h5>
+                            <p class="card-text" id="yourPlanetRaceIntelligence"></p>
+                            <h5 class="card-title">Overall Health:</h5>
+                            <p class="card-text" id="yourPlanetRaceHealth"></p>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
-
     </section>
 
     <section id="viewNewAccount" class="viewNewAccount">
@@ -137,6 +205,8 @@
                                 <input id="valR" type="range" min="1" max="6" value="1" step="1" class="slider"
                                        oninput="showVal(this.value)"
                                        onchange="showVal(this.value)"/>
+                                <small id="newImageHelp" class="form-text text-muted">You will be able to change this appearance ot level 20, so choose wisely!
+                                </small>
                             </div>
                             <span id="range" style="display: none;">1</span>
                             <p id="newDescr" class="card-text">Some quick example text to build on the card title and make up the bulk
@@ -147,29 +217,28 @@
                                     <div class="form-group">
                                         <label for="nameYourPlanet">Enter Name for Your Planet</label>
                                         <input type="text" class="form-control" id="nameYourPlanet"
-                                               aria-describedby="emailHelp" placeholder="Enter Name for Your Planet">
-                                        <small id="emailHelp" class="form-text text-muted">We'll never share your
-                                            email
+                                               aria-describedby="newNameHelp" placeholder="Enter Name for Your Planet">
+                                        <small id="newNameHelp" class="form-text text-muted">You will be able to change this name ot level 2
                                         </small>
                                     </div>
                                 </form>
                             </div>
                             <a href="#!" id="invadeNewPlanet" class="btn btn-primary">Invade New Planet</a>
-                            <a href="#!" id="viewNewPlanet" class="btn btn-primary">Invade New Planet</a>
+
                         </div>
                     </div>
                 </div>
             </div>
 
 
-            <img id="loader" src="images/Double Ring-2s-200px.gif">
+            <img id="newPlanetLoader" class="loader" src="images/Double Ring-2s-200px.gif">
 
-            <div class="col-lg-6 text-center" id="newNativeRace" style="display:none">
+            <div class="col-lg-6 text-center" id="newPlanetNativeRace" style="display:none">
                 <div class="ht-tm-codeblock">
                     <div class="ht-tm-element card text-center">
                         <div class="image-container">
-                            <div class="circle effect-3">
-                                <img id="imgNativeRace" src="images/1.png" alt=""/>
+                            <div class="circle effect-3" style="margin-top: 50px">
+                                <img id="newPlanetRaceImage" src="images/1.png" alt=""/>
                                 <p>Your Planet Native Race</p>
                             </div>
                         </div>
@@ -177,15 +246,15 @@
                         <div class="card-body">
                             <h4 class="card-title">This is the parameters of your planet's native race:</h4>
 
-                            <h3 id="nameRace"></h3>
+                            <h3 id="newPlanetRaceName"></h3>
                             <h2 class="card-title">Attack Power:</h2>
-                            <p class="card-text" id="newAttack"></p>
+                            <p class="card-text" id="newPlanetRaceAttack"></p>
                             <h2 class="card-title">Defence Power:</h2>
-                            <p class="card-text" id="newDefencce"></p>
+                            <p class="card-text" id="newPlanetRaceDefencce"></p>
                             <h2 class="card-title">Intelligence:</h2>
-                            <p class="card-text" id="newIntelligence"></p>
+                            <p class="card-text" id="newPlanetRaceIntelligence"></p>
                             <h2 class="card-title">Overall Health:</h2>
-                            <p class="card-text" id="newHealth"></p>
+                            <p class="card-text" id="newPlanetRaceHealth"></p>
 
                         </div>
                     </div>
@@ -226,7 +295,7 @@
 
 
 </main>
-<footer>Dapp-2018</footer>
+<footer class="ht-footer-container text-center">Crypto-Galaxy-2018</footer>
 <!-- Optional JavaScript -->
 <!-- jQuery first, then Popper.js, then Bootstrap JS -->
 <!--<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
