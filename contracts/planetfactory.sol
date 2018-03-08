@@ -9,6 +9,8 @@ contract PlanetFactory is Ownable {
 
   event NewPlanet(uint planetId, string name, uint civilizationParams, uint8 image);
 
+  event NewPlanetName( string name);
+
   uint civilizationParamsDigits = 16;
   uint civilizationParamsModulus = 10 ** civilizationParamsDigits;
   uint cooldownTime = 1 days;
@@ -31,6 +33,7 @@ contract PlanetFactory is Ownable {
 
   mapping (uint => address) public planetToOwner;
   mapping (address => uint) public ownerToPlanet;
+
   mapping (address => uint) public ownerPlanetCount;
 
   function _createPlanet(string _name, uint _civilizationParams, uint8 _image) internal {
@@ -38,7 +41,8 @@ contract PlanetFactory is Ownable {
     planetToOwner[id] = msg.sender;
     ownerToPlanet[msg.sender] = id;
     ownerPlanetCount[msg.sender]++;
-    NewPlanet(id, _name, _civilizationParams, _image);
+    emit NewPlanet(id, _name, _civilizationParams, _image);
+
   }
 
   function _generateRandomCivilizationParams(string _str) private view returns (uint) {
@@ -50,28 +54,55 @@ contract PlanetFactory is Ownable {
     //require(msg.value == newPlanetPrice);
     require(ownerPlanetCount[msg.sender] == 0);
     uint randCivilizationParams = _generateRandomCivilizationParams(_name);
-    randCivilizationParams = randCivilizationParams - randCivilizationParams % 100;
+    randCivilizationParams = randCivilizationParams + randCivilizationParams % 100;
     _createPlanet(_name, randCivilizationParams, _image);
+    //emit NewPlanetName(_name);
   }
 
-  function viewPlanet() public view returns(string,
+  function viewPlanet() public view returns(
+      string,
     uint,
     uint32,
     uint16,
     uint16,
-    uint8){
+    uint8,
+    uint){
       //uint planetId=ownerToPlanet[msg.sender];
       Planet storage myPlanet = planets[ownerToPlanet[msg.sender]];
-      if(myPlanet.owner == msg.sender){
+      require(myPlanet.owner == msg.sender);
     return (myPlanet.name,
             myPlanet.civilizationParams,
             myPlanet.level,
             myPlanet.winCount,
             myPlanet.lossCount,
-            myPlanet.image);
-            }
-            return ("",0,0,0,0,0);
+            myPlanet.image,
+            ownerToPlanet[msg.sender]);
     }
 
+  function hasPlanet() public view returns(uint){
+      return ownerPlanetCount[msg.sender];
+  }
 
+   function planetId() public view returns(uint){
+      return ownerToPlanet[msg.sender];
+  }
+
+   function planetsCount() public view returns(uint){
+      return planets.length;
+  }
+
+  function getPlanetsElement(uint _id) public view returns(string,
+    uint,
+    uint32,
+    uint16,
+    uint16,
+    uint8){
+      Planet storage planetElement = planets[_id];
+    return (planetElement.name,
+            planetElement.civilizationParams,
+            planetElement.level,
+            planetElement.winCount,
+            planetElement.lossCount,
+            planetElement.image);
+  }
 }
