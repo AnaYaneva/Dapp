@@ -1,0 +1,8 @@
+<h1 class="titleForm">Galaxy</h1>
+<div id="planets" class="planets row">
+    {{#each planets}}
+        {{> planetBox}}
+    {{else}}
+        <p>No planets in this galaxy.</p>
+    {{/each}}
+</div>

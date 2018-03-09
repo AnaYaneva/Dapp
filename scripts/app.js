@@ -121,6 +121,10 @@ function startApp() {
                         {
                             "name": "",
                             "type": "uint8"
+                        },
+                        {
+                            "name": "",
+                            "type": "address"
                         }
                     ],
                     "payable": false,
@@ -561,7 +565,7 @@ function startApp() {
     }
 
     function getContractAddress() {
-        let contractAddress = "0xf1c99195cb3ba9ebed870f2a31e7c15689a3b1cc";
+        let contractAddress = "0x6051caf64ddaeb4f176246f0945e39058f2e5d19";
         return contractAddress;
     }
 
@@ -578,6 +582,22 @@ function startApp() {
     let contract = web3.eth.contract(getContractABI()).at(getContractAddress());
     console.log(contract);
 
+    //templates
+    const planetsDiv = $('#planets');
+    const templates = {};
+
+    loadTemplates();
+
+    async function loadTemplates() {
+        const [addCatalogTemplate, addBoxTemplate] =
+            await Promise.all([
+                $.get('./templates/planetsCatalog.html'),
+                $.get('./templates/planet-box-partial.html')
+            ]);
+        templates['catalog'] = Handlebars.compile(addCatalogTemplate);
+        Handlebars.registerPartial('planetBox', addBoxTemplate);
+    }
+
     $('header').find('a').show();
     $('section').hide();
     $('#viewHome').show();
@@ -591,8 +611,8 @@ function startApp() {
     //async function loadTemplates() {
     //    const [addCatalogTemplate,addBoxTemplate]=
     //        await Promise.all([
-    //            $.get('./templates/adsCatalog.html'),
-    //            $.get('./templates/ad-box-partial.html')
+    //            $.get('./templates/planetsCatalog.html'),
+    //            $.get('./templates/planet-box-partial.html')
     //    ]);
     //    templates['catalog']=Handlebars.compile(addCatalogTemplate);
     //    Handlebars.registerPartial('adBox',addBoxTemplate);
@@ -613,7 +633,7 @@ function startApp() {
                 break;
             case 'galaxy':
                 $('#viewGalaxy').show();
-                loadAds();
+                loadPlanets();
                 break;
             case 'transfer':
                 $('#viewTransfer').show();
@@ -638,6 +658,7 @@ function startApp() {
     $('#linkMyAccount').click(() => showView('myAccount'));
     $('#linkNewAccount').click(() => showView('newAccount'));
     $('#linkGalaxy').click(() => showView('galaxy'));
+    $('#btnSearchGalaxy').click(() => showView('galaxy'));
     $('#linkTransfer').click(() => showView('transfer'));
 
     //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
@@ -751,6 +772,18 @@ function startApp() {
          userLoggedIn();
      }*/
 
+    class Planet {
+        constructor(id, name, civilizationParams, level, winCount, lossCount, imageUrl, owner) {
+            this.id = id;
+            this.name = name;
+            this.civilizationParams = civilizationParams;
+            this.level = level;
+            this.winCount = winCount;
+            this.lossCount = lossCount;
+            this.imageUrl = imageUrl;
+            this.owner = owner;
+        }
+    }
 
     //Home View
     function homeProceed() {
@@ -758,9 +791,9 @@ function startApp() {
             if (!error) {
                 let hasPlanet = result.toString();
 
-                if (hasPlanet==0){
+                if (hasPlanet == 0) {
                     showView('newAccount');
-                } else if(hasPlanet==1){
+                } else if (hasPlanet == 1) {
                     showView('myAccount');
                     yourPlanet();
                 }
@@ -810,42 +843,42 @@ function startApp() {
     }
 
     //Your Planet View
-     function yourPlanet() {
-         $('#yourPlanetLoader').show();
+    function yourPlanet() {
+        $('#yourPlanetLoader').show();
 
-         contract.viewPlanet(function (error, result) {
-             if (error) {
-                 console.log(error);
-                 $('#yourPlanetLoader').hide();
-             } else {
-                 $('#yourPlanetLoader').hide();
+        contract.viewPlanet(function (error, result) {
+            if (error) {
+                console.log(error);
+                $('#yourPlanetLoader').hide();
+            } else {
+                $('#yourPlanetLoader').hide();
 
-                 $('#yourPlanetName').html(result[0].toString());
-                 $('#yourPlanetLevel').html(result[2].toString());
-                 $('#yourPlanetWin').html(result[3].toString());
-                 $('#yourPlanetLoss').html(result[4].toString());
-                 document.getElementById("yourPlanetImage").src = "./images/" + result[5].toString() + ".jpg";
+                $('#yourPlanetName').html(result[0].toString());
+                $('#yourPlanetLevel').html(result[2].toString());
+                $('#yourPlanetWin').html(result[3].toString());
+                $('#yourPlanetLoss').html(result[4].toString());
+                document.getElementById("yourPlanetImage").src = "./images/" + result[5].toString() + ".jpg";
 
-                 let id = result[6].toString();
-                 console.log(id);
-                 //$('#btnLevelUp').click(levelUp(id));
+                let id = result[6].toString();
+                console.log(id);
+                //$('#btnLevelUp').click(levelUp(id));
 
-                 let civilizationParams = result[1].toString();
-                 let imgNum = civilizationParams.substring(0, 1);
-                 document.getElementById("yourPlanetNativeRaceImage").src = "./images/" + imgNum + ".png";
-                 let attack = civilizationParams.substring(1, 4);
-                 $('#yourPlanetRaceAttack').html(attack + " points");
-                 let defence = civilizationParams.substring(4, 7);
-                 $('#yourPlanetRaceDefencce').html(defence + " points");
-                 let intelligence = civilizationParams.substring(7, 10);
-                 $('#yourPlanetRaceIntelligence').html(intelligence + " points");
-                 let health = civilizationParams.substring(10, 15);
-                 $('#yourPlanetRaceHealth').html(health + " points");
-                 $('#yourPlanetRace').html(result[0] + "arians");
-                 $('#yourPlanetView').show();
-             }
-             //let address =web3.eth.defaultAccount;
-         });
+                let civilizationParams = result[1].toString();
+                let imgNum = civilizationParams.substring(0, 1);
+                document.getElementById("yourPlanetNativeRaceImage").src = "./images/" + imgNum + ".png";
+                let attack = civilizationParams.substring(1, 4);
+                $('#yourPlanetRaceAttack').html(attack + " points");
+                let defence = civilizationParams.substring(4, 7);
+                $('#yourPlanetRaceDefencce').html(defence + " points");
+                let intelligence = civilizationParams.substring(7, 10);
+                $('#yourPlanetRaceIntelligence').html(intelligence + " points");
+                let health = civilizationParams.substring(10, 15);
+                $('#yourPlanetRaceHealth').html(health + " points");
+                $('#yourPlanetRace').html(result[0] + "arians");
+                $('#yourPlanetView').show();
+            }
+            //let address =web3.eth.defaultAccount;
+        });
     }
 
     //function levelUp(id) {
@@ -858,5 +891,229 @@ function startApp() {
     //        }
     //    });
     //}
+
+    //view Galaxy
+    function loadPlanets() {
+        /*let planets = [{id: "0",name: "aaaaaaaaaaaaa",civilizationParams: "2158999472581878", level: "1",winCount: "2",lossCount: "0",imageUrl: "./images/1.jpg",owner: "0xbfb9ce4c1636b088f13f68771b6c908b18dd53c0"},{id: "1",name: "bbbbbbbbbb",civilizationParams: "5072482078175354", level: "1",winCount: "0",lossCount: "0",imageUrl: "./images/2.jpg",owner: "0x60543a7fcaf1fe2c966e250ecafa520b1ec008f8"},{id: "2",name: "ccccccccccccc",civilizationParams: "1253081221454378", level: "1",winCount: "0",lossCount: "0",imageUrl: "./images/3.jpg",owner: "0x7a5eeff92340016838bfde140da9143628527973"},{id: "3",name: "ddddddddddd",civilizationParams: "7847733125690990", level: "1",winCount: "1",lossCount: "0",imageUrl: "./images/4.jpg",owner: "0xc40c2f1c6beebf6cdc96d9a68f5f56efed33ddb7"},{id: "4",name: "eeeeeeeeeee",civilizationParams: "4164385903776334", level: "1",winCount: "0",lossCount: "0",imageUrl: "./images/5.jpg",owner: "0x731cb7a5b4fd9a07f9165964b9d01cea35342bb6"},{id: "5",name: "ffffffffffff",civilizationParams: "440762851425760", level: "1",winCount: "0",lossCount: "0",imageUrl: "./images/6.jpg",owner: "0xd9759c48346b3e5863dd8e3c06134755c3cb5f6f"},{id: "6",name: "mmmmmmmmmmmmm",civilizationParams: "688340196147026", level: "1",winCount: "0",lossCount: "0",imageUrl: "./images/1.jpg",owner: "0x5644829262d0e1506fae84f7624bc858e038b051"},{id: "7",name: "lllllllllllllllllllllllll",civilizationParams: "5214677890933704", level: "1",winCount: "0",lossCount: "0",imageUrl: "./images/2.jpg",owner: "0xeddfedd98b40cc8640a23ff0f343fafbe5de0329"},{id: "8",name: "Mars",civilizationParams: "8645582557085842", level: "1",winCount: "0",lossCount: "3",imageUrl: "./images/3.jpg",owner: "0x5064b54f0a17af8bf7e91d675080db0ccbea5a67"}];
+        //let planets =[];
+        let count;
+        let str = "";
+        contract.planetsCount(function (error, result) {
+            if (error) {
+                console.log(error);
+            } else {
+                count = result.toString();
+                console.log(count);
+
+                for (let i = 0; i < Number(count); i++) {
+                    console.log(i);
+
+                    contract.getPlanetsElement(i, function (error, result) {
+                        if (error) {
+                            console.log(error);
+                        } else {
+                            //console.log(result[0].toString());
+                            //console.log(result[1].toString());
+                            //console.log(result[2].toString());
+                            //console.log(result[3].toString());
+                            //console.log(result[4].toString());
+                            //console.log("./images/" + result[5].toString() + ".jpg");
+                            //console.log(result[6].toString());
+                            // let planet=new Planet(
+                            //     i,
+                            //     result[0].toString(),
+                            //     result[1].toString(),
+                            //     result[2].toString(),
+                            //     result[3].toString(),
+                            //     result[4].toString(),
+                            //     "./images/" + result[5].toString() + ".jpg",
+                            //     result[6].toString()
+                            // );
+
+                            //planets.push({
+                            //    id: i,
+                            //    name: result[0].toString(),
+                            //    civilizationParams: result[1].toString(),
+                            //    level: result[2].toString(),
+                            //    winCount: result[3].toString(),
+                            //    lossCount: result[4].toString(),
+                            //    imageUrl: "./images/" + result[5].toString() + ".jpg",
+                            //    owner: result[6].toString()});
+
+                            //console.log(planets[i].id);
+                            //console.log(planets.length);
+                            str += "{id: \"" + i + "\",name: \"" + result[0].toString() + "\",civilizationParams: \"" + result[1].toString() +
+                                "\", level: \"" + result[2].toString() + "\",winCount: \"" + result[3].toString() + "\",lossCount: \"" + result[4].toString() +
+                                "\",imageUrl: \"./images/" + result[5].toString() + ".jpg\",owner: \"" + result[6].toString() + "\"}";
+                            if (i < Number(count) - 1) {
+                                str += ",";
+                            }
+                            console.log(str);
+                        }
+                    });
+                }
+
+
+            }
+        });
+        let planets = "[" + str + "]";*/
+console.log(f());
+
+        let planets= f()+"]";
+
+        console.log(planets);
+
+        let content = $('#content');
+        content.empty();
+
+        /*planets.forEach(p => {
+            if (p.owner !== web3.eth.defaultAccount) {
+                p.isNotOwner = true;
+            }
+        });*/
+
+        let context = {
+            planets
+        };
+
+        let html = templates['catalog'](context);
+        content.html(html);
+
+        let attackButtons = $(content).find('.planet-box').find('.attack');
+
+        attackButtons.click(attack);
+
+
+    }
+
+
+     function f() {
+        let count;
+        let str = "[";
+        contract.planetsCount(function (error, result) {
+            if (error) {
+                console.log(error);
+            } else {
+                count = result.toString();
+                console.log(count);
+
+                for (let i = 0; i < Number(count); i++) {
+                    console.log(i);
+
+                    contract.getPlanetsElement(i, function (error, result) {
+                        if (error) {
+                            console.log(error);
+                        } else {
+                            //console.log(result[0].toString());
+                            //console.log(result[1].toString());
+                            //console.log(result[2].toString());
+                            //console.log(result[3].toString());
+                            //console.log(result[4].toString());
+                            //console.log("./images/" + result[5].toString() + ".jpg");
+                            //console.log(result[6].toString());
+                            // let planet=new Planet(
+                            //     i,
+                            //     result[0].toString(),
+                            //     result[1].toString(),
+                            //     result[2].toString(),
+                            //     result[3].toString(),
+                            //     result[4].toString(),
+                            //     "./images/" + result[5].toString() + ".jpg",
+                            //     result[6].toString()
+                            // );
+
+                            //planets.push({
+                            //    id: i,
+                            //    name: result[0].toString(),
+                            //    civilizationParams: result[1].toString(),
+                            //    level: result[2].toString(),
+                            //    winCount: result[3].toString(),
+                            //    lossCount: result[4].toString(),
+                            //    imageUrl: "./images/" + result[5].toString() + ".jpg",
+                            //    owner: result[6].toString()});
+
+                            //console.log(planets[i].id);
+                            //console.log(planets.length);
+                            str += "{id: \"" + i + "\",name: \"" + result[0].toString() + "\",civilizationParams: \"" + result[1].toString() +
+                                "\", level: \"" + result[2].toString() + "\",winCount: \"" + result[3].toString() + "\",lossCount: \"" + result[4].toString() +
+                                "\",imageUrl: \"./images/" + result[5].toString() + ".jpg\",owner: \"" + result[6].toString() + "\"}";
+                            if (i < Number(count) - 1) {
+                                str += ",";
+                            }
+
+                            console.log(str);
+                        }
+                    });
+                }
+
+
+            }
+        });
+
+        console.log(str);
+        return str;
+    }
+    function attack() {
+        let id = $(this).parent().attr('data-id');
+
+        console.log("attack " + id);
+
+        let wins;
+        let loss;
+        let myId;
+
+        contract.planetId(function (error, result) {
+            if (error) {
+                console.log(error);
+            } else {
+                myId = result.toString();
+                console.log(myId);
+                contract.getPlanetsElement(myId, function (error, result) {
+                    if (error) {
+                        console.log(error);
+                    } else {
+                        wins = result[3].toString();
+                        loss = result[4].toString();
+
+                        console.log(wins);
+                        console.log(loss);
+
+                        console.log("battle(" + myId + "," + id + ")");
+                        contract.battle(myId, id, function (error, result) {
+                            if (error) {
+                                console.log(error);
+                            } else {
+                                contract.getPlanetsElement(id, function (error, result) {
+                                    if (error) {
+                                        console.log(error);
+                                    } else {
+                                        contract.getPlanetsElement(myId, function (error, result) {
+                                            if (error) {
+                                                console.log(error);
+                                            } else {
+                                                if (wins == result[3].toString()) {
+                                                    console.log("you lost");
+                                                } else if (loss = result.toString()) {
+                                                    console.log("you win");
+                                                }
+                                            }
+                                        });
+                                    }
+                                });
+                            }
+                        });
+                    }
+                });
+
+
+            }
+        });
+
+
+        //await requester.remove('appdata', 'posts/' + id);
+        //showInfo('Ad deleted');
+        //showView('ads');
+    }
+
 
 }

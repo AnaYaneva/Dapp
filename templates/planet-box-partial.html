@@ -1,0 +1,33 @@
+<div class="planet-box col-lg-3">
+    <div class="title" data-id="{{id}}">
+        <div class="ht-tm-codeblock">
+            <div class="ht-tm-element card text-center">
+                <div class="image-container">
+                    <div style="margin-top: 50px" class="circle effect6">
+                        <img id="yourPlanetImage" src="{{imageUrl}}" width="200px" height="200px"
+                             alt="Your Planet">
+                    </div>
+                </div>
+                <div class="card-body" data-id="{{id}}">
+                    <h4 class="card-title">{{name}}</h4>
+                    <div>
+                        <h5 class="card-title">Level:</h5>
+                        <p class="card-text">{{level}}</p>
+                    </div>
+                    <div>
+                        <h5 class="card-title">Win count:</h5>
+                        <p class="card-text">{{winCount}}</p>
+                    </div>
+                    <div>
+                        <h5 class="card-title">Loss count:</h5>
+                        <p class="card-text">{{id}}</p>
+                    </div>
+                    <!--{{#if isNotOwner}}-->
+                    <a href="#!" id="btnAttack" class="btn btn-primary attack">Attack!</a>
+                    <!-- {{/if}}-->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
