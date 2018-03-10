@@ -71,6 +71,8 @@
 
     <img id="loader" class="loader" src="images/Double Ring-2s-200px.gif">
 
+
+
     <section id="viewHome" class="viewHome">
         <div class="container text-center">
             <div class="jumbotron text-center" style="margin: 50px">
@@ -92,7 +94,88 @@
 
                 <a href="#!" id="homeProceed" class="ht-tm-element btn btn-outline-primary btn-block">Lets find out who You are!</a>
 
+            </div>
         </div>
+    </section>
+
+
+    <section id="viewPending" class="viewPending">
+        <h2>Master, You have a pending transfer</h2>
+
+        <img id="pendingPlanetLoader" class="loader" src="images/Double Ring-2s-200px.gif">
+
+        <div id="pendingPlanetView" class="row" style="display: none">
+            <div class="col-lg-6 text-center" id="pendingPlanet">
+                <div class="ht-tm-codeblock">
+                    <div class="ht-tm-element card text-center">
+                        <div class="image-container">
+                            <div style="margin-top: 50px" class="circle effect6">
+                                <img id="pendingPlanetImage" width="200px" height="200px"
+                                     alt="Your Planet">
+                            </div>
+                        </div>
+
+                        <div class="card-body">
+                            <h2 class="card-title" id="pendingPlanetName">Card title</h2>
+
+                            <div >
+                                <h5 class="card-title">Level:</h5>
+                                <p class="card-text" id="pendingPlanetLevel"></p>
+                                <!--<a href="#!" id="btnLevelUp" class="btn btn-primary">Level Up!</a>
+                                <small id="levelUpFee" class="form-text text-muted">You can increase the level of your planet, but it will cost you 0.001 ether!
+                                </small>-->
+                            </div>
+                            <div >
+                                <h5 class="card-title">Win count:</h5>
+                                <p class="card-text" id="pendingPlanetWin"></p>
+                            </div>
+                            <div >
+                                <h5 class="card-title">Loss count:</h5>
+                                <p class="card-text" id="pendingPlanetLoss"></p>
+                            </div>
+
+                            <div style="margin-top: 20px; margin-bottom: 20px;"></div>
+
+
+
+                            <a href="#!" id="btnTakeOwnership" class="btn btn-primary " style="margin: 15px;">Take the Ownership of This Planet!</a>
+
+
+                            <div style="margin: 15px;">
+                                <a href="#!" id="btnRefuseOwnership" class="btn btn-outline-danger " >Refuse the Ownership of This Planet</a>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-6 text-center" id="pendingPlanetNativeRace" >
+                <div class="ht-tm-codeblock">
+                    <div class="ht-tm-element card text-center">
+                        <div class="image-container">
+                            <div class="circle effect-3" style="margin-top: 50px">
+                                <img id="pendingPlanetNativeRaceImage" src="images/1.png" alt=""/>
+                                <p>Your Planet Native Race</p>
+                            </div>
+                        </div>
+
+                        <div class="card-body">
+                            <!--<h2 class="card-title">This is the parameters of your planet's native race:</h2>-->
+
+                            <h2 id="pendingPlanetRace"></h2>
+                            <h5 class="card-title">Attack Power:</h5>
+                            <p class="card-text" id="pendingPlanetRaceAttack"></p>
+                            <h5 class="card-title">Defence Power:</h5>
+                            <p class="card-text" id="pendingPlanetRaceDefencce"></p>
+                            <h5 class="card-title">Intelligence:</h5>
+                            <p class="card-text" id="pendingPlanetRaceIntelligence"></p>
+                            <h5 class="card-title">Overall Health:</h5>
+                            <p class="card-text" id="pendingPlanetRaceHealth"></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </section>
 
@@ -111,7 +194,16 @@
                                      alt="Your Planet">
                             </div>
                         </div>
-
+                        <div class="ht-tm-codeblock ht-tm-btn-replaceable ht-tm-element ht-tm-element-inner" id="levelTwoChangeName" style="display:none">
+                            <form>
+                                <div class="form-group">
+                                    <label for="changeYourPlanetName">Enter Name for Your Planet</label>
+                                    <input type="text" class="form-control" id="changeYourPlanetName"
+                                           aria-describedby="emailHelp" placeholder="Enter New Name for Your Planet">
+                                </div>
+                                <a href="#!" id="btnChangeName" class="btn btn-primary">Change Name</a>
+                            </form>
+                        </div>
                         <div class="card-body">
                             <h2 class="card-title" id="yourPlanetName">Card title</h2>
 
@@ -139,32 +231,25 @@
                             <span id="yourPlanetRange" style="display: none;">1</span>
                                 <a href="#!" id="btnChangeAppearance" class="btn btn-primary">Change Appearance</a>
                             </div>
-                            <div style="margin-top: 20px; margin-bottom: 20px;"></div>
-
-
-
-                                <a href="#!" id="btnSearchGalaxy" class="btn btn-primary " style="margin: 50px;">Search The Galaxy!</a>
-
-
+                            <div style="margin-top: 20px; margin-bottom: 20px;">
+                                <a href="#!" id="btnSearchGalaxy" class="btn btn-primary " style="margin: 50px;">Search The Galaxy!</a></div>
                             <div style="margin: 50px;">
                                 <a href="#!" id="btnTransfer" class="btn btn-outline-danger " >Find New Master Your Planet</a>
                                 <small class="form-text text-muted">Transfer your planet's ownership</small>
                             </div>
 
-
-
-
-
-                            <div class="ht-tm-codeblock ht-tm-btn-replaceable ht-tm-element ht-tm-element-inner" id="levelTwoChangeName" style="display:none">
-                                <form>
-                                    <div class="form-group">
-                                        <label for="changeYourPlanetName">Enter Name for Your Planet</label>
-                                        <input type="text" class="form-control" id="changeYourPlanetName"
-                                               aria-describedby="emailHelp" placeholder="Enter New Name for Your Planet">
+                            <div id="transferPlanet" style="display:none">
+                                <div class="ht-tm-codeblock">
+                                    <div class="ht-tm-element input-group mb-3">
+                                        <input id="recipientAddress" type="text" class="form-control" placeholder="Recipient's address" aria-label="Recipient's address" aria-describedby="basic-addon2">
+                                        <div class="input-group-append">
+                                            <button id="btnFinalTransfer" class="btn btn-outline-danger" type="button">Transfer!</button>
+                                            <small id="infoTransfer" class="form-text text-muted" style="display:none">The Recipient must approve the transfer</small>
+                                        </div>
                                     </div>
-                                    <a href="#!" id="btnChangeName" class="btn btn-primary">Change Name</a>
-                                </form>
+                                </div>
                             </div>
+
                         </div>
                     </div>
                 </div>
@@ -283,17 +368,6 @@
         </div>
     </section>
 
-    <section id="viewAttack" class="viewAttack">
-        <h2>Attack</h2>
-    </section>
-
-    <section id="viewBattle" class="viewBattle">
-        <h2>viewBattle</h2>
-    </section>
-
-    <section id="viewTransfer" class="viewTransfer">
-        <h2>Transfer</h2>
-    </section>
 
 
 </main>

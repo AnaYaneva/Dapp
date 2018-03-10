@@ -11,11 +11,11 @@ function startApp() {
                 {
                     "constant": true,
                     "inputs": [],
-                    "name": "owner",
+                    "name": "pendingPlanetApprovals",
                     "outputs": [
                         {
                             "name": "",
-                            "type": "address"
+                            "type": "uint256"
                         }
                     ],
                     "payable": false,
@@ -39,35 +39,11 @@ function startApp() {
                 {
                     "constant": true,
                     "inputs": [],
-                    "name": "viewPlanet",
+                    "name": "owner",
                     "outputs": [
                         {
                             "name": "",
-                            "type": "string"
-                        },
-                        {
-                            "name": "",
-                            "type": "uint256"
-                        },
-                        {
-                            "name": "",
-                            "type": "uint32"
-                        },
-                        {
-                            "name": "",
-                            "type": "uint16"
-                        },
-                        {
-                            "name": "",
-                            "type": "uint16"
-                        },
-                        {
-                            "name": "",
-                            "type": "uint8"
-                        },
-                        {
-                            "name": "",
-                            "type": "uint256"
+                            "type": "address"
                         }
                     ],
                     "payable": false,
@@ -76,8 +52,13 @@ function startApp() {
                 },
                 {
                     "constant": true,
-                    "inputs": [],
-                    "name": "planetsCount",
+                    "inputs": [
+                        {
+                            "name": "",
+                            "type": "address"
+                        }
+                    ],
+                    "name": "ownerPlanetCount",
                     "outputs": [
                         {
                             "name": "",
@@ -133,106 +114,11 @@ function startApp() {
                 },
                 {
                     "constant": true,
-                    "inputs": [
-                        {
-                            "name": "",
-                            "type": "uint256"
-                        }
-                    ],
-                    "name": "planetToOwner",
-                    "outputs": [
-                        {
-                            "name": "",
-                            "type": "address"
-                        }
-                    ],
-                    "payable": false,
-                    "stateMutability": "view",
-                    "type": "function"
-                },
-                {
-                    "constant": true,
                     "inputs": [],
-                    "name": "planetId",
+                    "name": "planetsCount",
                     "outputs": [
                         {
                             "name": "",
-                            "type": "uint256"
-                        }
-                    ],
-                    "payable": false,
-                    "stateMutability": "view",
-                    "type": "function"
-                },
-                {
-                    "constant": true,
-                    "inputs": [
-                        {
-                            "name": "",
-                            "type": "address"
-                        }
-                    ],
-                    "name": "ownerToPlanet",
-                    "outputs": [
-                        {
-                            "name": "",
-                            "type": "uint256"
-                        }
-                    ],
-                    "payable": false,
-                    "stateMutability": "view",
-                    "type": "function"
-                },
-                {
-                    "constant": true,
-                    "inputs": [
-                        {
-                            "name": "",
-                            "type": "address"
-                        }
-                    ],
-                    "name": "ownerPlanetCount",
-                    "outputs": [
-                        {
-                            "name": "",
-                            "type": "uint256"
-                        }
-                    ],
-                    "payable": false,
-                    "stateMutability": "view",
-                    "type": "function"
-                },
-                {
-                    "constant": true,
-                    "inputs": [
-                        {
-                            "name": "_tokenId",
-                            "type": "uint256"
-                        }
-                    ],
-                    "name": "ownerOf",
-                    "outputs": [
-                        {
-                            "name": "_owner",
-                            "type": "address"
-                        }
-                    ],
-                    "payable": false,
-                    "stateMutability": "view",
-                    "type": "function"
-                },
-                {
-                    "constant": true,
-                    "inputs": [
-                        {
-                            "name": "_owner",
-                            "type": "address"
-                        }
-                    ],
-                    "name": "balanceOf",
-                    "outputs": [
-                        {
-                            "name": "_balance",
                             "type": "uint256"
                         }
                     ],
@@ -288,17 +174,93 @@ function startApp() {
                     "type": "function"
                 },
                 {
-                    "constant": false,
+                    "constant": true,
                     "inputs": [
                         {
-                            "name": "_planetId",
+                            "name": "",
                             "type": "uint256"
                         }
                     ],
-                    "name": "levelUp",
-                    "outputs": [],
-                    "payable": true,
-                    "stateMutability": "payable",
+                    "name": "planetToOwner",
+                    "outputs": [
+                        {
+                            "name": "",
+                            "type": "address"
+                        }
+                    ],
+                    "payable": false,
+                    "stateMutability": "view",
+                    "type": "function"
+                },
+                {
+                    "constant": true,
+                    "inputs": [],
+                    "name": "planetId",
+                    "outputs": [
+                        {
+                            "name": "",
+                            "type": "uint256"
+                        }
+                    ],
+                    "payable": false,
+                    "stateMutability": "view",
+                    "type": "function"
+                },
+                {
+                    "constant": true,
+                    "inputs": [],
+                    "name": "viewPlanet",
+                    "outputs": [
+                        {
+                            "name": "",
+                            "type": "string"
+                        },
+                        {
+                            "name": "",
+                            "type": "uint256"
+                        },
+                        {
+                            "name": "",
+                            "type": "uint32"
+                        },
+                        {
+                            "name": "",
+                            "type": "uint16"
+                        },
+                        {
+                            "name": "",
+                            "type": "uint16"
+                        },
+                        {
+                            "name": "",
+                            "type": "uint8"
+                        },
+                        {
+                            "name": "",
+                            "type": "uint256"
+                        }
+                    ],
+                    "payable": false,
+                    "stateMutability": "view",
+                    "type": "function"
+                },
+                {
+                    "constant": true,
+                    "inputs": [
+                        {
+                            "name": "",
+                            "type": "address"
+                        }
+                    ],
+                    "name": "ownerToPlanet",
+                    "outputs": [
+                        {
+                            "name": "",
+                            "type": "uint256"
+                        }
+                    ],
+                    "payable": false,
+                    "stateMutability": "view",
                     "type": "function"
                 },
                 {
@@ -306,21 +268,16 @@ function startApp() {
                     "inputs": [
                         {
                             "indexed": true,
-                            "name": "_owner",
+                            "name": "previousOwner",
                             "type": "address"
                         },
                         {
                             "indexed": true,
-                            "name": "_approved",
+                            "name": "newOwner",
                             "type": "address"
-                        },
-                        {
-                            "indexed": false,
-                            "name": "_tokenId",
-                            "type": "uint256"
                         }
                     ],
-                    "name": "Approval",
+                    "name": "OwnershipTransferred",
                     "type": "event"
                 },
                 {
@@ -350,157 +307,11 @@ function startApp() {
                     "constant": false,
                     "inputs": [
                         {
-                            "name": "_to",
-                            "type": "address"
-                        },
-                        {
                             "name": "_tokenId",
                             "type": "uint256"
                         }
                     ],
-                    "name": "approve",
-                    "outputs": [],
-                    "payable": false,
-                    "stateMutability": "nonpayable",
-                    "type": "function"
-                },
-                {
-                    "constant": false,
-                    "inputs": [
-                        {
-                            "name": "_fee",
-                            "type": "uint256"
-                        }
-                    ],
-                    "name": "setLevelUpFee",
-                    "outputs": [],
-                    "payable": false,
-                    "stateMutability": "nonpayable",
-                    "type": "function"
-                },
-                {
-                    "constant": false,
-                    "inputs": [
-                        {
-                            "name": "_to",
-                            "type": "address"
-                        },
-                        {
-                            "name": "_tokenId",
-                            "type": "uint256"
-                        }
-                    ],
-                    "name": "transfer",
-                    "outputs": [],
-                    "payable": false,
-                    "stateMutability": "nonpayable",
-                    "type": "function"
-                },
-                {
-                    "anonymous": false,
-                    "inputs": [
-                        {
-                            "indexed": false,
-                            "name": "planetId",
-                            "type": "uint256"
-                        },
-                        {
-                            "indexed": false,
-                            "name": "name",
-                            "type": "string"
-                        },
-                        {
-                            "indexed": false,
-                            "name": "civilizationParams",
-                            "type": "uint256"
-                        },
-                        {
-                            "indexed": false,
-                            "name": "image",
-                            "type": "uint8"
-                        }
-                    ],
-                    "name": "NewPlanet",
-                    "type": "event"
-                },
-                {
-                    "anonymous": false,
-                    "inputs": [
-                        {
-                            "indexed": false,
-                            "name": "name",
-                            "type": "string"
-                        }
-                    ],
-                    "name": "NewPlanetName",
-                    "type": "event"
-                },
-                {
-                    "anonymous": false,
-                    "inputs": [
-                        {
-                            "indexed": true,
-                            "name": "previousOwner",
-                            "type": "address"
-                        },
-                        {
-                            "indexed": true,
-                            "name": "newOwner",
-                            "type": "address"
-                        }
-                    ],
-                    "name": "OwnershipTransferred",
-                    "type": "event"
-                },
-                {
-                    "anonymous": false,
-                    "inputs": [
-                        {
-                            "indexed": true,
-                            "name": "_from",
-                            "type": "address"
-                        },
-                        {
-                            "indexed": true,
-                            "name": "_to",
-                            "type": "address"
-                        },
-                        {
-                            "indexed": false,
-                            "name": "_tokenId",
-                            "type": "uint256"
-                        }
-                    ],
-                    "name": "Transfer",
-                    "type": "event"
-                },
-                {
-                    "constant": false,
-                    "inputs": [
-                        {
-                            "name": "_name",
-                            "type": "string"
-                        },
-                        {
-                            "name": "_image",
-                            "type": "uint8"
-                        }
-                    ],
-                    "name": "createRandomPlanet",
-                    "outputs": [],
-                    "payable": false,
-                    "stateMutability": "nonpayable",
-                    "type": "function"
-                },
-                {
-                    "constant": false,
-                    "inputs": [
-                        {
-                            "name": "_tokenId",
-                            "type": "uint256"
-                        }
-                    ],
-                    "name": "takeOwnership",
+                    "name": "refuseOwnership",
                     "outputs": [],
                     "payable": false,
                     "stateMutability": "nonpayable",
@@ -559,13 +370,91 @@ function startApp() {
                     "payable": false,
                     "stateMutability": "nonpayable",
                     "type": "function"
+                },
+                {
+                    "constant": false,
+                    "inputs": [
+                        {
+                            "name": "_name",
+                            "type": "string"
+                        },
+                        {
+                            "name": "_image",
+                            "type": "uint8"
+                        }
+                    ],
+                    "name": "createRandomPlanet",
+                    "outputs": [],
+                    "payable": false,
+                    "stateMutability": "nonpayable",
+                    "type": "function"
+                },
+                {
+                    "constant": false,
+                    "inputs": [
+                        {
+                            "name": "_fee",
+                            "type": "uint256"
+                        }
+                    ],
+                    "name": "setLevelUpFee",
+                    "outputs": [],
+                    "payable": false,
+                    "stateMutability": "nonpayable",
+                    "type": "function"
+                },
+                {
+                    "constant": false,
+                    "inputs": [
+                        {
+                            "name": "_to",
+                            "type": "address"
+                        },
+                        {
+                            "name": "_tokenId",
+                            "type": "uint256"
+                        }
+                    ],
+                    "name": "transfer",
+                    "outputs": [],
+                    "payable": false,
+                    "stateMutability": "nonpayable",
+                    "type": "function"
+                },
+                {
+                    "constant": false,
+                    "inputs": [
+                        {
+                            "name": "_planetId",
+                            "type": "uint256"
+                        }
+                    ],
+                    "name": "levelUp",
+                    "outputs": [],
+                    "payable": true,
+                    "stateMutability": "payable",
+                    "type": "function"
+                },
+                {
+                    "constant": false,
+                    "inputs": [
+                        {
+                            "name": "_tokenId",
+                            "type": "uint256"
+                        }
+                    ],
+                    "name": "takeOwnership",
+                    "outputs": [],
+                    "payable": false,
+                    "stateMutability": "nonpayable",
+                    "type": "function"
                 }
             ];
         return abi;
     }
 
     function getContractAddress() {
-        let contractAddress = "0x6051caf64ddaeb4f176246f0945e39058f2e5d19";
+        let contractAddress = "0x64d77db88c1cd67e3de90dd8e5f8542c73793941";
         return contractAddress;
     }
 
@@ -625,6 +514,9 @@ function startApp() {
             case 'home':
                 $('#viewHome').show();
                 break;
+            case "pending":
+                $('#viewPending').show();
+                break;
             case 'myAccount':
                 $('#viewMyAccount').show();
                 break;
@@ -638,12 +530,6 @@ function startApp() {
             case 'transfer':
                 $('#viewTransfer').show();
                 break;
-            case 'attack':
-                $('#viewAttack').show();
-                break;
-            case 'battle':
-                $('#viewBattle').show();
-                break;
         }
     }
 
@@ -653,17 +539,21 @@ function startApp() {
         $('#' + target).show();
     }
 
-   // // Attach event listeners
-   // $('#linkHome').click(() => showView('home'));
-   // $('#linkMyAccount').click(() => showView('myAccount'));
-   // $('#linkNewAccount').click(() => showView('newAccount'));
-   // $('#linkGalaxy').click(() => showView('galaxy'));
+    // Attach event listeners
+
+    // $('#linkHome').click(() => showView('home'));
+    // $('#linkMyAccount').click(() => showView('myAccount'));
+    // $('#linkNewAccount').click(() => showView('newAccount'));
+    // $('#linkGalaxy').click(() => showView('galaxy'));
     $('#btnSearchGalaxy').click(() => showView('galaxy'));
-   // $('#linkTransfer').click(() => showView('transfer'));
+    //$('#btnTransfer').click(() => showView('viewTransfer'));
+    // $('#linkTransfer').click(() => showView('transfer'));
 
     //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
     $('#invadeNewPlanet').click(newPlanet);
     $('#homeProceed').click(homeProceed);
+    $('#btnTakeOwnership').click(takeOwnership(id));
+    $('#btnRefuseOwnership').click(refuseOwnership(id));
 
     // Notifications
     $(document).on({
@@ -773,18 +663,95 @@ function startApp() {
 
     //Home View
     function homeProceed() {
-        contract.hasPlanet(function (error, result) {
-            if (!error) {
-                let hasPlanet = result.toString();
-
-                if (hasPlanet == 0) {
-                    showView('newAccount');
-                } else if (hasPlanet == 1) {
-                    showView('myAccount');
-                    yourPlanet();
-                }
-            } else {
+        contract.pendingPlanetApprovals(function (error, result) {
+            if (error) {
                 console.log(error);
+            } else {
+                let pendingPlanetId = result.toString();
+
+                if (pendingPlanetId == 0) {
+                    contract.hasPlanet(function (error, result) {
+                        if (!error) {
+                            let hasPlanet = result.toString();
+
+                            if (hasPlanet == 0) {
+                                showView('newAccount');
+                            } else if (hasPlanet == 1) {
+                                showView('myAccount');
+                                yourPlanet();
+                            }
+                        } else {
+                            console.log(error);
+                        }
+                    });
+                } else {
+                    showView('pending');
+                    pendingPlanet(Number(pendingPlanetId)-1);
+                }
+            }
+        });
+    }
+
+    //Pending View
+    function pendingPlanet(id) {
+        //$('#pendingPlanetLoader').show();
+
+        contract.getPlanetsElement(id, function (error, result) {
+            if (error) {
+                console.log(error);
+                // $('#pendingPlanetLoader').hide();
+            } else {
+                //$('#pendingPlanetLoader').hide();
+
+                $('#pendingPlanetName').html(result[0].toString());
+                $('#pendingPlanetLevel').html(result[2].toString());
+                $('#pendingPlanetWin').html(result[3].toString());
+                $('#pendingPlanetLoss').html(result[4].toString());
+                document.getElementById("pendingPlanetImage").src = "./images/" + result[5].toString() + ".jpg";
+
+                //let id = result[6].toString();
+                //console.log(id);
+                //$('#btnLevelUp').click(levelUp(id));
+
+                let civilizationParams = result[1].toString();
+                let imgNum = civilizationParams.substring(0, 1);
+                document.getElementById("pendingPlanetNativeRaceImage").src = "./images/" + imgNum + ".png";
+                let attack = civilizationParams.substring(1, 4);
+                $('#pendingPlanetRaceAttack').html(attack + " points");
+                let defence = civilizationParams.substring(4, 7);
+                $('#pendingPlanetRaceDefencce').html(defence + " points");
+                let intelligence = civilizationParams.substring(7, 10);
+                $('#pendingPlanetRaceIntelligence').html(intelligence + " points");
+                let health = civilizationParams.substring(10, 15);
+                $('#pendingPlanetRaceHealth').html(health + " points");
+                $('#pendingPlanetRace').html(result[0] + "arians");
+                $('#pendingPlanetView').show();
+
+            }
+        });
+    }
+
+    function takeOwnership(id) {
+        contract.takeOwnership(id, function (error, result) {
+            if (error) {
+                console.log(error);
+                // $('#pendingPlanetLoader').hide();
+            } else {
+                showInfo("You have Planet now!")
+                showView('myAccount');
+                yourPlanet();
+            }
+        });
+    }
+
+    function refuseOwnership(id) {
+        contract.refuseOwnership(id, function (error, result) {
+            if (error) {
+                console.log(error);
+                // $('#pendingPlanetLoader').hide();
+            } else {
+                showInfo("You refuse Planet's ownership!")
+                showView('newAccount');
             }
         });
     }
@@ -862,8 +829,25 @@ function startApp() {
                 $('#yourPlanetRaceHealth').html(health + " points");
                 $('#yourPlanetRace').html(result[0] + "arians");
                 $('#yourPlanetView').show();
+
+                $('#btnTransfer').click(transfer(id));
             }
             //let address =web3.eth.defaultAccount;
+        });
+    }
+
+    function transfer(id) {
+        $('#transferPlanet').show();
+
+        let to=$('#recipientAddress').val();
+
+        contract.transfer(to, id, function (error, result) {
+            if (error) {
+                console.log(error);
+            } else {
+                $('#infoTransfer').show();
+                showInfo("Master, You transfer this planet! Now wait till the Recipient to approve the transfer!");
+            }
         });
     }
 
