@@ -72,7 +72,6 @@
     <img id="loader" class="loader" src="images/Double Ring-2s-200px.gif">
 
 
-
     <section id="viewHome" class="viewHome">
         <div class="container text-center">
             <div class="jumbotron text-center" style="margin: 50px">
@@ -82,17 +81,19 @@
                 <h5>Now we will now find out if You already has Your own Planet, and if not You can invade one</h5>
             </div>
 
-            <div class="ht-tm-cat" style="margin-bottom: 50px" >
+            <div class="ht-tm-cat" style="margin-bottom: 50px">
                 <div class="ht-tm-codeblock">
                     <h5 class="ht-tm-cat-title">HAL 9000</h5>
-                    <p>The evil robot from A Space Odyssey is summoned with <code>hal-9000</code>. He will scan You now.</p>
+                    <p>The evil robot from A Space Odyssey is summoned with <code>hal-9000</code>. He will scan You now.
+                    </p>
                     <span class="ht-tm-element hal-9000 d-block mx-auto mb-4 mt-3"></span>
                 </div>
             </div>
 
             <div class=" row ht-tm-codeblock text-center">
 
-                <a href="#!" id="homeProceed" class="ht-tm-element btn btn-outline-primary btn-block">Lets find out who You are!</a>
+                <a href="#!" id="homeProceed" class="ht-tm-element btn btn-outline-primary btn-block">Lets find out who
+                    You are!</a>
 
             </div>
         </div>
@@ -118,18 +119,18 @@
                         <div class="card-body">
                             <h2 class="card-title" id="pendingPlanetName">Card title</h2>
 
-                            <div >
+                            <div>
                                 <h5 class="card-title">Level:</h5>
                                 <p class="card-text" id="pendingPlanetLevel"></p>
                                 <!--<a href="#!" id="btnLevelUp" class="btn btn-primary">Level Up!</a>
                                 <small id="levelUpFee" class="form-text text-muted">You can increase the level of your planet, but it will cost you 0.001 ether!
                                 </small>-->
                             </div>
-                            <div >
+                            <div>
                                 <h5 class="card-title">Win count:</h5>
                                 <p class="card-text" id="pendingPlanetWin"></p>
                             </div>
-                            <div >
+                            <div>
                                 <h5 class="card-title">Loss count:</h5>
                                 <p class="card-text" id="pendingPlanetLoss"></p>
                             </div>
@@ -137,12 +138,14 @@
                             <div style="margin-top: 20px; margin-bottom: 20px;"></div>
 
 
-
-                            <a href="#!" id="btnTakeOwnership" class="btn btn-primary " style="margin: 15px;">Take the Ownership of This Planet!</a>
-
+                            <button id="btnTakeOwnership" class="btn btn-primary " style="margin: 15px;">Take the
+                                Ownership of This Planet!
+                            </button>
 
                             <div style="margin: 15px;">
-                                <a href="#!" id="btnRefuseOwnership" class="btn btn-outline-danger " >Refuse the Ownership of This Planet</a>
+                                <button id="btnRefuseOwnership" class="btn btn-outline-danger ">Refuse the Ownership of
+                                    This Planet
+                                </button>
                             </div>
 
                         </div>
@@ -150,7 +153,7 @@
                 </div>
             </div>
 
-            <div class="col-lg-6 text-center" id="pendingPlanetNativeRace" >
+            <div class="col-lg-6 text-center" id="pendingPlanetNativeRace">
                 <div class="ht-tm-codeblock">
                     <div class="ht-tm-element card text-center">
                         <div class="image-container">
@@ -194,7 +197,8 @@
                                      alt="Your Planet">
                             </div>
                         </div>
-                        <div class="ht-tm-codeblock ht-tm-btn-replaceable ht-tm-element ht-tm-element-inner" id="levelTwoChangeName" style="display:none">
+                        <div class="ht-tm-codeblock ht-tm-btn-replaceable ht-tm-element ht-tm-element-inner"
+                             id="levelTwoChangeName" style="display:none">
                             <form>
                                 <div class="form-group">
                                     <label for="changeYourPlanetName">Enter Name for Your Planet</label>
@@ -207,46 +211,53 @@
                         <div class="card-body">
                             <h2 class="card-title" id="yourPlanetName">Card title</h2>
 
-                            <div >
+                            <div>
                                 <h5 class="card-title">Level:</h5>
                                 <p class="card-text" id="yourPlanetLevel"></p>
                                 <!--<a href="#!" id="btnLevelUp" class="btn btn-primary">Level Up!</a>
                                 <small id="levelUpFee" class="form-text text-muted">You can increase the level of your planet, but it will cost you 0.001 ether!
                                 </small>-->
                             </div>
-                            <div >
+                            <div>
                                 <h5 class="card-title">Win count:</h5>
                                 <p class="card-text" id="yourPlanetWin"></p>
                             </div>
-                            <div >
+                            <div>
                                 <h5 class="card-title">Loss count:</h5>
                                 <p class="card-text" id="yourPlanetLoss"></p>
                             </div>
                             <div id="imageRange" style="display: none">
-                            <div>
-                                <input id="yourPlanetValR" type="range" min="1" max="6" value="1" step="1" class="slider"
-                                       oninput="showVal(this.value)"
-                                       onchange="showVal(this.value)"/>
-                            </div>
-                            <span id="yourPlanetRange" style="display: none;">1</span>
+                                <div>
+                                    <input id="yourPlanetValR" type="range" min="1" max="6" value="1" step="1"
+                                           class="slider"
+                                           oninput="showVal(this.value)"
+                                           onchange="showVal(this.value)"/>
+                                </div>
+                                <span id="yourPlanetRange" style="display: none;">1</span>
                                 <a href="#!" id="btnChangeAppearance" class="btn btn-primary">Change Appearance</a>
                             </div>
                             <div style="margin-top: 20px; margin-bottom: 20px;">
-                                <a href="#!" id="btnSearchGalaxy" class="btn btn-primary " style="margin: 50px;">Search The Galaxy!</a></div>
-                            <div style="margin: 50px;">
-                                <a href="#!" id="btnTransfer" class="btn btn-outline-danger " >Find New Master Your Planet</a>
+                                <a href="#!" id="btnSearchGalaxy" class="btn btn-primary " style="margin: 15px;">Search
+                                    The Galaxy!</a></div>
+                            <div style="margin: 15px;">
+                                <a href="#!" id="btnTransfer" class="btn btn-outline-danger ">Find New Master Your
+                                    Planet</a>
                                 <small class="form-text text-muted">Transfer your planet's ownership</small>
                             </div>
 
-                            <div id="transferPlanet" style="display:none">
-                                <div class="ht-tm-codeblock">
-                                    <div class="ht-tm-element input-group mb-3">
-                                        <input id="recipientAddress" type="text" class="form-control" placeholder="Recipient's address" aria-label="Recipient's address" aria-describedby="basic-addon2">
-                                        <div class="input-group-append">
-                                            <button id="btnFinalTransfer" class="btn btn-outline-danger" type="button">Transfer!</button>
-                                            <small id="infoTransfer" class="form-text text-muted" style="display:none">The Recipient must approve the transfer</small>
-                                        </div>
+                            <div id="transferPlanet" class="row text-center" style="display:none">
+                                <div class="ht-tm-element input-group mb-3">
+                                    <input id="recipientAddress" type="text" class="form-control"
+                                           placeholder="Recipient's address" aria-label="Recipient's address"
+                                           aria-describedby="basic-addon2" required>
+                                    <div class="input-group-append">
+                                        <button id="btnFinalTransfer" class="btn btn-outline-danger" type="button">
+                                            Transfer!
+                                        </button>
                                     </div>
+                                    <small id="infoTransfer" class="form-text text-muted" style="display:none">The
+                                        Recipient must approve the transfer
+                                    </small>
                                 </div>
                             </div>
 
@@ -255,7 +266,7 @@
                 </div>
             </div>
 
-            <div class="col-lg-6 text-center" id="yourPlanetNativeRace" >
+            <div class="col-lg-6 text-center" id="yourPlanetNativeRace">
                 <div class="ht-tm-codeblock">
                     <div class="ht-tm-element card text-center">
                         <div class="image-container">
@@ -304,11 +315,13 @@
                                 <input id="valR" type="range" min="1" max="6" value="1" step="1" class="slider"
                                        oninput="showVal(this.value)"
                                        onchange="showVal(this.value)"/>
-                                <small id="newImageHelp" class="form-text text-muted">You will be able to change this appearance ot level 20, so choose wisely!
+                                <small id="newImageHelp" class="form-text text-muted">You will be able to change this
+                                    appearance ot level 20, so choose wisely!
                                 </small>
                             </div>
                             <span id="range" style="display: none;">1</span>
-                            <p id="newDescr" class="card-text">Some quick example text to build on the card title and make up the bulk
+                            <p id="newDescr" class="card-text">Some quick example text to build on the card title and
+                                make up the bulk
                                 of the card's content.</p>
 
                             <div class="ht-tm-codeblock ht-tm-btn-replaceable ht-tm-element ht-tm-element-inner">
@@ -317,7 +330,8 @@
                                         <label for="nameYourPlanet">Enter Name for Your Planet</label>
                                         <input type="text" class="form-control" id="nameYourPlanet"
                                                aria-describedby="newNameHelp" placeholder="Enter Name for Your Planet">
-                                        <small id="newNameHelp" class="form-text text-muted">You will be able to change this name ot level 2
+                                        <small id="newNameHelp" class="form-text text-muted">You will be able to change
+                                            this name ot level 2
                                         </small>
                                     </div>
                                 </form>
@@ -369,7 +383,6 @@
     </section>
 
 
-
 </main>
 <footer class="ht-footer-container text-center">Crypto-Galaxy-2018</footer>
 <!-- Optional JavaScript -->
@@ -382,7 +395,7 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
         integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
         crossorigin="anonymous"></script>
-<script >
+<script>
     /*if(typeof web3 !== 'undefined'){
         web3 = new Web3(web3.currentProvider);
     }else{
@@ -395,6 +408,7 @@
     var val = document.getElementById("valR").value;
     document.getElementById("range").innerHTML = val;
     document.getElementById("img").src = val + ".jpg";
+
     function showVal(newVal) {
         document.getElementById("range").innerHTML = newVal;
         document.getElementById("img").src = "./images/" + newVal + ".jpg";

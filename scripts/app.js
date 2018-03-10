@@ -552,8 +552,7 @@ function startApp() {
     //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
     $('#invadeNewPlanet').click(newPlanet);
     $('#homeProceed').click(homeProceed);
-    $('#btnTakeOwnership').click(takeOwnership(id));
-    $('#btnRefuseOwnership').click(refuseOwnership(id));
+
 
     // Notifications
     $(document).on({
@@ -661,6 +660,7 @@ function startApp() {
          userLoggedIn();
      }*/
 
+
     //Home View
     function homeProceed() {
         contract.pendingPlanetApprovals(function (error, result) {
@@ -686,11 +686,12 @@ function startApp() {
                     });
                 } else {
                     showView('pending');
-                    pendingPlanet(Number(pendingPlanetId)-1);
+                    pendingPlanet(Number(pendingPlanetId) - 1);
                 }
             }
         });
     }
+
 
     //Pending View
     function pendingPlanet(id) {
@@ -727,31 +728,29 @@ function startApp() {
                 $('#pendingPlanetRace').html(result[0] + "arians");
                 $('#pendingPlanetView').show();
 
-            }
-        });
-    }
-
-    function takeOwnership(id) {
-        contract.takeOwnership(id, function (error, result) {
-            if (error) {
-                console.log(error);
-                // $('#pendingPlanetLoader').hide();
-            } else {
-                showInfo("You have Planet now!")
-                showView('myAccount');
-                yourPlanet();
-            }
-        });
-    }
-
-    function refuseOwnership(id) {
-        contract.refuseOwnership(id, function (error, result) {
-            if (error) {
-                console.log(error);
-                // $('#pendingPlanetLoader').hide();
-            } else {
-                showInfo("You refuse Planet's ownership!")
-                showView('newAccount');
+                $('#btnTakeOwnership').click(function () {
+                    contract.takeOwnership(id, function (error, result) {
+                        if (error) {
+                            console.log(error);
+                            // $('#pendingPlanetLoader').hide();
+                        } else {
+                            showInfo("You have Planet now!")
+                            showView('myAccount');
+                            yourPlanet();
+                        }
+                    });
+                });
+                $('#btnRefuseOwnership').click(function () {
+                    contract.refuseOwnership(id, function (error, result) {
+                        if (error) {
+                            console.log(error);
+                            // $('#pendingPlanetLoader').hide();
+                        } else {
+                            showInfo("You refuse Planet's ownership!")
+                            showView('newAccount');
+                        }
+                    });
+                });
             }
         });
     }
@@ -830,24 +829,24 @@ function startApp() {
                 $('#yourPlanetRace').html(result[0] + "arians");
                 $('#yourPlanetView').show();
 
-                $('#btnTransfer').click(transfer(id));
+                $('#btnTransfer').click(function () {
+                    $('#transferPlanet').show();
+
+                    let to = $('#recipientAddress').val();
+
+                    $('#btnFinalTransfer').click(function () {
+                    contract.transfer(to, id, function (error, result) {
+                        if (error) {
+                            console.log(error);
+                        } else {
+                            $('#infoTransfer').show();
+                            showInfo("Master, You transfer this planet! Now wait till the Recipient to approve the transfer!");
+                        }
+                    });
+                    });
+                });
             }
             //let address =web3.eth.defaultAccount;
-        });
-    }
-
-    function transfer(id) {
-        $('#transferPlanet').show();
-
-        let to=$('#recipientAddress').val();
-
-        contract.transfer(to, id, function (error, result) {
-            if (error) {
-                console.log(error);
-            } else {
-                $('#infoTransfer').show();
-                showInfo("Master, You transfer this planet! Now wait till the Recipient to approve the transfer!");
-            }
         });
     }
 
