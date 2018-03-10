@@ -812,8 +812,6 @@ function startApp() {
                 document.getElementById("yourPlanetImage").src = "./images/" + result[5].toString() + ".jpg";
 
                 let id = result[6].toString();
-                console.log(id);
-                //$('#btnLevelUp').click(levelUp(id));
 
                 let civilizationParams = result[1].toString();
                 let imgNum = civilizationParams.substring(0, 1);
@@ -835,18 +833,17 @@ function startApp() {
                     let to = $('#recipientAddress').val();
 
                     $('#btnFinalTransfer').click(function () {
-                    contract.transfer(to, id, function (error, result) {
-                        if (error) {
-                            console.log(error);
-                        } else {
-                            $('#infoTransfer').show();
-                            showInfo("Master, You transfer this planet! Now wait till the Recipient to approve the transfer!");
-                        }
-                    });
+                        contract.transfer(to, id, function (error, result) {
+                            if (error) {
+                                console.log(error);
+                            } else {
+                                $('#infoTransfer').show();
+                                showInfo("Master, You transfer this planet! Now wait till the Recipient to approve the transfer!");
+                            }
+                        });
                     });
                 });
             }
-            //let address =web3.eth.defaultAccount;
         });
     }
 
@@ -936,10 +933,10 @@ function startApp() {
                 console.log(error);
             } else {
                 count = result.toString();
-                console.log(count);
+                //console.log(count);
 
                 for (let i = 0; i < Number(count); i++) {
-                    console.log(i);
+                    //console.log(i);
 
                     contract.getPlanetsElement(i, function (error, result) {
                         if (error) {
@@ -983,9 +980,9 @@ function startApp() {
                             } else {
                                 $('#loader').hide();
                                 str += "]";
-                                console.log(str);
+                                //console.log(str);
                                 let planets = eval(str);
-                                console.log(planets);
+                                //console.log(planets);
 
                                 let content = $('#content');
 
@@ -1007,7 +1004,11 @@ function startApp() {
                                 let attackButtons = $(content).find('.planet-box').find('.attack');
 
                                 attackButtons.click(attack);
-                                console.log(planets);
+
+                                $('#btnYourPlanet').click(function () {
+                                    showView('myAccount');
+                                    yourPlanet();
+                                });
                             }
                         }
                     });
@@ -1017,65 +1018,47 @@ function startApp() {
     }
 
     function attack() {
-        let id = $(this).parent().attr('data-id');
-
-        console.log("attack " + id);
-
-        let wins;
-        //let loss;
-        let myId;
+        let enemyId = $(this).parent().attr('data-id');
 
         contract.planetId(function (error, result) {
             if (error) {
                 console.log(error);
             } else {
-                myId = result.toString();
+                let myId = result.toString();
                 console.log(myId);
                 contract.getPlanetsElement(myId, function (error, result) {
                     if (error) {
                         console.log(error);
                     } else {
-                        wins = result[3].toString();
+                        let wins = result[3].toString();
                         //loss = result[4].toString();
 
                         console.log(wins);
                         //console.log(loss);
 
-                        console.log("battle(" + myId + "," + id + ")");
-                        contract.battle(myId, id, function (error, result) {
+                        contract.battle(myId, enemyId, function (error, result) {
                             if (error) {
                                 console.log(error);
                             } else {
-                                contract.getPlanetsElement(id, function (error, result) {
+                                contract.getPlanetsElement(myId, function (error, result) {
                                     if (error) {
                                         console.log(error);
                                     } else {
-                                        contract.getPlanetsElement(myId, function (error, result) {
-                                            if (error) {
-                                                console.log(error);
-                                            } else {
-                                                if (wins == result[3].toString()) {
-                                                    showInfo("you lost");
-                                                    showView('myAccount');
-                                                } else {
-                                                    showInfo("you win");
-                                                    showView('myAccount');
-                                                }
-                                            }
-                                        });
+                                        if (wins == result[3].toString()) {
+                                            yourPlanet();
+                                            showView('myAccount');
+                                        } else {
+                                            yourPlanet();
+                                            showView('myAccount');
+
+                                        }
                                     }
                                 });
                             }
                         });
                     }
                 });
-
-
             }
         });
-
-
     }
-
-
 }

@@ -32,16 +32,4 @@ contract PlanetHelper is PlanetAttack {
     planets[_planetId].image = _newAppearance;
   }
 
-  /*function getPlanetsByOwner(address _owner) external view returns(uint[]) {
-    uint[] memory result = new uint[](ownerPlanetCount[_owner]);
-    uint counter = 0;
-    for (uint i = 0; i < planets.length; i++) {
-      if (planetToOwner[i] == _owner) {
-        result[counter] = i;
-        counter++;
-      }
-    }
-    return result;
-  }*/
-
 }

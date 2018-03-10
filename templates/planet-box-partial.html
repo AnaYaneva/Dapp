@@ -1,4 +1,4 @@
-<div class="planet-box col-lg-3">
+<div class="planet-box col-lg-4">
     <div class="title" data-id="{{id}}">
         <div class="ht-tm-codeblock">
             <div class="ht-tm-element card text-center">
@@ -9,22 +9,28 @@
                     </div>
                 </div>
                 <div class="card-body" data-id="{{id}}">
-                    <h4 class="card-title">{{name}}</h4>
-                    <div>
-                        <h5 class="card-title">Level:</h5>
-                        <p class="card-text">{{level}}</p>
+                    <h2 style="margin-bottom: 25px" class="card-title">{{name}}</h2>
+
+                    <div class="row" style="margin: 15px">
+                        <h5 class="col-sm-6 text-right card-title">Level:</h5>
+                        <p class="col-sm-4 text-left card-text">{{level}}</p>
                     </div>
-                    <div>
-                        <h5 class="card-title">Win count:</h5>
-                        <p class="card-text">{{winCount}}</p>
+                    <div class="row" style="margin: 15px">
+                        <h5 class="col-sm-6 text-right card-title">Win count:</h5>
+                        <p class="col-sm-4 text-left card-text">{{winCount}}</p>
                     </div>
-                    <div>
-                        <h5 class="card-title">Loss count:</h5>
-                        <p class="card-text">{{id}}</p>
+                    <div class="row" style="margin: 15px">
+                        <h5 class="col-sm-6 text-right card-title">Loss count:</h5>
+                        <p class="col-sm-4 text-left card-text">{{lossCount}}</p>
                     </div>
-                   {{#if isNotOwner}}
-                    <a href="#!" id="btnAttack" class="btn btn-outline-danger attack">Attack!</a>
-                     {{/if}}
+
+                        {{#if isNotOwner}}
+                         <a href="#!" style="margin: 15px" id="btnAttack" class="btn btn-outline-danger attack">Attack!</a>
+                         {{else}}
+                         <a href="#!"  style="margin: 15px"  id="btnYourPlanet" class="btn btn-outline-primary attack">Your Planet</a>
+                          {{/if}}
+
+
                 </div>
             </div>
         </div>

@@ -3,20 +3,16 @@ pragma solidity ^0.4.19;
 import "./ownable.sol";
 import "./safemath.sol";
 
-contract PlanetFactory is Ownable {
+contract PlanetFactory is Ownable{
 
   using SafeMath for uint256;
 
-  event NewPlanet(uint planetId, string name, uint civilizationParams, uint8 image);
-
-  event NewPlanetName( string name);
-
   uint civilizationParamsDigits = 16;
   uint civilizationParamsModulus = 10 ** civilizationParamsDigits;
-  uint cooldownTime = 1 days;
+  uint cooldownTime = 5 minutes;
 
 
-    uint newPlanetPrice = 0.1 ether;
+  uint newPlanetPrice = 0.1 ether;
 
   struct Planet {
     string name;
@@ -36,13 +32,16 @@ contract PlanetFactory is Ownable {
 
   mapping (address => uint) public ownerPlanetCount;
 
+modifier onlyOwnerOf(uint _planetId) {
+    require(msg.sender == planetToOwner[_planetId]);
+    _;
+  }
+
   function _createPlanet(string _name, uint _civilizationParams, uint8 _image) internal {
     uint id = planets.push(Planet(_name, _civilizationParams, 1, uint32(now + cooldownTime), 0, 0, _image, msg.sender)) - 1;
     planetToOwner[id] = msg.sender;
     ownerToPlanet[msg.sender] = id;
     ownerPlanetCount[msg.sender]++;
-    emit NewPlanet(id, _name, _civilizationParams, _image);
-
   }
 
   function _generateRandomCivilizationParams(string _str) private view returns (uint) {
@@ -56,7 +55,6 @@ contract PlanetFactory is Ownable {
     uint randCivilizationParams = _generateRandomCivilizationParams(_name);
     randCivilizationParams = randCivilizationParams + randCivilizationParams % 100;
     _createPlanet(_name, randCivilizationParams, _image);
-    //emit NewPlanetName(_name);
   }
 
   function viewPlanet() public view returns(
@@ -96,13 +94,15 @@ contract PlanetFactory is Ownable {
     uint32,
     uint16,
     uint16,
-    uint8){
+    uint8,
+    address){
       Planet storage planetElement = planets[_id];
     return (planetElement.name,
             planetElement.civilizationParams,
             planetElement.level,
             planetElement.winCount,
             planetElement.lossCount,
-            planetElement.image);
+            planetElement.image,
+            planetElement.owner);
   }
 }
