@@ -653,18 +653,17 @@ function startApp() {
         $('#' + target).show();
     }
 
-    // Attach event listeners
-    $('#linkHome').click(() => showView('home'));
-    $('#linkMyAccount').click(() => showView('myAccount'));
-    $('#linkNewAccount').click(() => showView('newAccount'));
-    $('#linkGalaxy').click(() => showView('galaxy'));
+   // // Attach event listeners
+   // $('#linkHome').click(() => showView('home'));
+   // $('#linkMyAccount').click(() => showView('myAccount'));
+   // $('#linkNewAccount').click(() => showView('newAccount'));
+   // $('#linkGalaxy').click(() => showView('galaxy'));
     $('#btnSearchGalaxy').click(() => showView('galaxy'));
-    $('#linkTransfer').click(() => showView('transfer'));
+   // $('#linkTransfer').click(() => showView('transfer'));
 
     //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
     $('#invadeNewPlanet').click(newPlanet);
     $('#homeProceed').click(homeProceed);
-    //$('#buttonEditAd').click(editAd);
 
     // Notifications
     $(document).on({
@@ -771,19 +770,6 @@ function startApp() {
          localStorage.setItem('authtoken', data._kmd.authtoken);
          userLoggedIn();
      }*/
-
-    class Planet {
-        constructor(id, name, civilizationParams, level, winCount, lossCount, imageUrl, owner) {
-            this.id = id;
-            this.name = name;
-            this.civilizationParams = civilizationParams;
-            this.level = level;
-            this.winCount = winCount;
-            this.lossCount = lossCount;
-            this.imageUrl = imageUrl;
-            this.owner = owner;
-        }
-    }
 
     //Home View
     function homeProceed() {
@@ -957,37 +943,9 @@ function startApp() {
             }
         });
         let planets = "[" + str + "]";*/
-console.log(f());
 
-        let planets= f()+"]";
+        $('#loader').show();
 
-        console.log(planets);
-
-        let content = $('#content');
-        content.empty();
-
-        /*planets.forEach(p => {
-            if (p.owner !== web3.eth.defaultAccount) {
-                p.isNotOwner = true;
-            }
-        });*/
-
-        let context = {
-            planets
-        };
-
-        let html = templates['catalog'](context);
-        content.html(html);
-
-        let attackButtons = $(content).find('.planet-box').find('.attack');
-
-        attackButtons.click(attack);
-
-
-    }
-
-
-     function f() {
         let count;
         let str = "[";
         contract.planetsCount(function (error, result) {
@@ -1039,27 +997,49 @@ console.log(f());
                                 "\",imageUrl: \"./images/" + result[5].toString() + ".jpg\",owner: \"" + result[6].toString() + "\"}";
                             if (i < Number(count) - 1) {
                                 str += ",";
-                            }
+                            } else {
+                                $('#loader').hide();
+                                str += "]";
+                                console.log(str);
+                                let planets = eval(str);
+                                console.log(planets);
 
-                            console.log(str);
+                                let content = $('#content');
+
+                                content.empty();
+
+                                planets.forEach(p => {
+                                    if (p.owner !== web3.eth.defaultAccount) {
+                                        p.isNotOwner = true;
+                                    }
+                                });
+
+                                let context = {
+                                    planets
+                                };
+
+                                let html = templates['catalog'](context);
+                                content.html(html);
+
+                                let attackButtons = $(content).find('.planet-box').find('.attack');
+
+                                attackButtons.click(attack);
+                                console.log(planets);
+                            }
                         }
                     });
                 }
-
-
             }
         });
-
-        console.log(str);
-        return str;
     }
+
     function attack() {
         let id = $(this).parent().attr('data-id');
 
         console.log("attack " + id);
 
         let wins;
-        let loss;
+        //let loss;
         let myId;
 
         contract.planetId(function (error, result) {
@@ -1073,10 +1053,10 @@ console.log(f());
                         console.log(error);
                     } else {
                         wins = result[3].toString();
-                        loss = result[4].toString();
+                        //loss = result[4].toString();
 
                         console.log(wins);
-                        console.log(loss);
+                        //console.log(loss);
 
                         console.log("battle(" + myId + "," + id + ")");
                         contract.battle(myId, id, function (error, result) {
@@ -1092,9 +1072,11 @@ console.log(f());
                                                 console.log(error);
                                             } else {
                                                 if (wins == result[3].toString()) {
-                                                    console.log("you lost");
-                                                } else if (loss = result.toString()) {
-                                                    console.log("you win");
+                                                    showInfo("you lost");
+                                                    showView('myAccount');
+                                                } else {
+                                                    showInfo("you win");
+                                                    showView('myAccount');
                                                 }
                                             }
                                         });
@@ -1110,9 +1092,6 @@ console.log(f());
         });
 
 
-        //await requester.remove('appdata', 'posts/' + id);
-        //showInfo('Ad deleted');
-        //showView('ads');
     }
 
 
